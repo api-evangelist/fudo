@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/fudo-openapi-original.yml
+docs: https://dev.fu.do/api/
+summary:
+  types:
+  - http
+  http_schemes:
+  - bearer
+  token_exchange: true
+flow:
+  description: >-
+    Fudo uses a two-step, token-based scheme. First obtain long-lived access
+    credentials (apiKey + apiSecret) by requesting API access, then exchange
+    them for a short-lived bearer token at the authentication endpoint. Send the
+    token in the Authorization header of every API request, prefixed with
+    "Bearer ". Tokens last 24 hours; the expiry is returned in the "exp" field
+    (seconds since epoch) so callers can renew before expiry. API access
+    requires the Pro plan or higher, and the actions permitted depend on the
+    role assigned to the user tied to the credentials.
+  credentials:
+    apiKey: Issued per account/user; request via soporte@fu.do or Administration > Users > "Establecer API Secret".
+    apiSecret: Secret paired with the apiKey; shown once and must be saved immediately.
+  token_endpoint: https://auth.fu.do/api
+  token_method: POST
+  token_request_content_type: application/json
+  token_request_example: |-
+    curl -X POST https://auth.fu.do/api \
+         -d '{"apiKey":"123456","apiSecret":"654321"}' \
+         -H "Accept: application/json" \
+         -H "Content-Type: application/json"
+  token_response_example: '{"token":"1234567890","exp":"1645387452"}'
+  token_ttl_hours: 24
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: >-
+    Bearer token obtained from the authentication endpoint (https://auth.fu.do/api)
+    by exchanging apiKey + apiSecret. Sent as "Authorization: Bearer <token>".
+  sources:
+  - openapi/fudo-openapi-original.yml
