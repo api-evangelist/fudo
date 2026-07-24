@@ -1,0 +1,321 @@
+openapi: 3.1.0
+info:
+  version: v1alpha1
+  title: Fudo Customers Rooms API
+  description: "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n"
+servers:
+- url: https://api.fu.do/v1alpha1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Rooms
+paths:
+  /rooms:
+    get:
+      summary: Get rooms
+      tags:
+      - Rooms
+      parameters:
+      - name: page
+        in: query
+        description: Page number and size.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            number:
+              type: string
+              pattern: ^\d+$
+            size:
+              type: string
+              pattern: ^\d+$
+      - name: sort
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((-?id|-?name)(,(?!$))?)+$
+          example:
+          - id
+          - -id
+          - name
+          - -name
+      - name: include
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((tables)(,(?!$))?)+$
+          example: tables
+      responses:
+        '200':
+          description: A list of resources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          pattern: \d{1,10}
+                          example: '1'
+                        type:
+                          type: string
+                          enum:
+                          - Room
+                          example: Room
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              minLength: 5
+                              maxLength: 90
+                              example: Main
+    post:
+      summary: Create room
+      tags:
+      - Rooms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - data
+              properties:
+                data:
+                  type: object
+                  additionalProperties: false
+                  required:
+                  - type
+                  - attributes
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - Room
+                      example: Room
+                    attributes:
+                      type: object
+                      additionalProperties: false
+                      required:
+                      - name
+                      properties:
+                        name:
+                          type: string
+                          minLength: 1
+                          maxLength: 45
+                          example: Main
+      responses:
+        '201':
+          description: The created resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: \d{1,10}
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Room
+                        example: Room
+                      attributes:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            minLength: 5
+                            maxLength: 90
+                            example: Main
+  /rooms/{id}:
+    get:
+      summary: Get room
+      tags:
+      - Rooms
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: \d{1,10}
+          example: '1'
+      - name: include
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((tables)(,(?!$))?)+$
+          example: tables
+      responses:
+        '200':
+          description: A single resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: \d{1,10}
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Room
+                        example: Room
+                      attributes:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            minLength: 5
+                            maxLength: 90
+                            example: Main
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          example: '404'
+                        title:
+                          type: string
+                          example: Not Found
+    patch:
+      summary: Update room
+      tags:
+      - Rooms
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: \d{1,10}
+          example: '1'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - data
+              properties:
+                data:
+                  type: object
+                  additionalProperties: false
+                  required:
+                  - id
+                  - type
+                  - attributes
+                  properties:
+                    id:
+                      type: string
+                      pattern: ^\d{1,10}$
+                      example: '1'
+                    type:
+                      type: string
+                      enum:
+                      - Room
+                      example: Room
+                    attributes:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        name:
+                          type: string
+                          minLength: 1
+                          maxLength: 45
+                          example: Main
+      responses:
+        '200':
+          description: The updated resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: \d{1,10}
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Room
+                        example: Room
+                      attributes:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            minLength: 5
+                            maxLength: 90
+                            example: Main
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          example: '404'
+                        title:
+                          type: string
+                          example: Not Found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'From here you can assign a value to the authorization header to be able
+
+        to perform tests from this interface. The value to assign must be the
+
+        token obtained from the authentication endpoint, as explained above.
+
+
+        ###
+
+        '

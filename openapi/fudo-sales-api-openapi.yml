@@ -1,0 +1,2111 @@
+openapi: 3.1.0
+info:
+  version: v1alpha1
+  title: Fudo Customers Sales API
+  description: "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n"
+servers:
+- url: https://api.fu.do/v1alpha1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Sales
+paths:
+  /sales:
+    get:
+      summary: Get sales
+      tags:
+      - Sales
+      parameters:
+      - name: filter
+        in: query
+        description: Object in the form of filter[column]=value.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            createdAt:
+              type: string
+              pattern: (^(gte|lte)\.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?)|(^and\(gte\.\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(Z)?)?\,lte.\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(Z)?)?\))
+              example: and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)
+            saleType:
+              type: string
+              enum:
+              - eq.EAT-IN
+              - eq.TAKEAWAY
+              - eq.DELIVERY
+              - in.(EAT-IN,TAKEAWAY)
+              example: eq.TAKEAWAY
+            referral:
+              type: string
+              pattern: ^in\.\((bot|bot_cart)(,(bot|bot_cart))*\)$
+              example: in.(bot,bot_cart)
+            saleState:
+              type: string
+              pattern: ^in\.\(((PENDING|CANCELED|CLOSED|IN-COURSE|PAYMENT-PROCESS|DELIVERY-SENT|READY-TO-DELIVER)(,(?!$))?)+\)$
+            userId:
+              type: string
+              pattern: ^eq.\d{1,10}$
+            saleIdentifierId:
+              type: string
+              pattern: ^isdistinct\.null$
+            shiftId:
+              type: string
+              pattern: ^eq.\d{1,10}$
+            paymentMethodId:
+              type: string
+              pattern: ^eq.\d{1,10}$
+            tableId:
+              type: string
+              pattern: ^eq.\d{1,10}$
+            '@all':
+              type: string
+              pattern: fts\..{2,255}
+      - name: page
+        in: query
+        description: Page number and size.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            number:
+              type: string
+              pattern: ^\d+$
+            size:
+              type: string
+              pattern: ^\d+$
+      - name: sort
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((-?id|-?createdAt|-?closedAt)(,(?!$))?)+$
+          example:
+          - id
+          - -id
+          - createdAt
+          - -createdAt
+      - name: include
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((cashRegister|closedBy|commercialDocuments|customer|discounts.discountTemplate|discounts|items.createdBy|items.product|items.product.invoiceInformation|items.product.productCategory.taxes|items.product.productCategory|items|items.subitems.product|items.subitems.product.productCategory.taxes|items.subitems.product.productCategory|items.subitems.product.invoiceInformation|items.subitems|orders|payments.paymentMethod|payments|tips|shippingCosts|table.room|table|waiter|saleIdentifier|serviceCosts|)(,(?!$))?)+$
+          example: items,table.room
+      - name: fields
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            cashRegister:
+              type: string
+              pattern: ^((name)(,(?!$))?)*$
+              example: name
+            discountTemplate:
+              type: string
+              pattern: ^((name)(,(?!$))?)*$
+              example: name
+            invoiceInformation:
+              type: string
+              pattern: ^((ncm|)(,(?!$))?)*$
+              example: ncm
+            order:
+              type: string
+              pattern: ^((origin)(,(?!$))?)*$
+              example: origin
+            sale:
+              type: string
+              pattern: ^((closedAt|comment|createdAt|people|customerName|anonymousCustomer|total|saleType|saleState|expectedPayments|customer|discounts|items|payments|tips|shippingCosts|table|waiter|saleIdentifier|commercialDocuments|cashRegister|serviceCosts|orders)(,(?!$))?)*$
+              example: items, waiter
+            serviceCost:
+              type: string
+              pattern: ^((amount|canceled|percentage|)(,(?!$))?)*$
+              example: amount
+      responses:
+        '200':
+          description: A list of resources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          pattern: '[0-9]+'
+                        type:
+                          type: string
+                          enum:
+                          - User
+                        attributes:
+                          type: object
+                          properties:
+                            closedAt:
+                              type: string
+                              example: '2020-05-11T23:15:00.000Z'
+                            comment:
+                              type: string
+                              example: This is a comment
+                            createdAt:
+                              type: string
+                              example: '2020-05-11T23:15:00.000Z'
+                            people:
+                              type: integer
+                              example: 2
+                            customerName:
+                              type: string
+                              example: Paula
+                            anonymousCustomer:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  example: Paula
+                                phone:
+                                  type: string
+                                  example: +54 11 1234 1234
+                                address:
+                                  type: string
+                                  example: '["Calle falsa", "123", "", "Springfield"]'
+                            total:
+                              type: number
+                              example: 1350.5
+                            saleType:
+                              type: string
+                              enum:
+                              - EAT-IN
+                              - TAKEAWAY
+                              example: EAT-IN
+                            saleState:
+                              type: string
+                              enum:
+                              - CANCELED
+                              - CLOSED
+                              - IN-COURSE
+                              example: IN-COURSE
+                            expectedPayments:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                    example: 100
+                                  details:
+                                    type: string
+                                    example: '100'
+                                  paymentMethodId:
+                                    type: string
+                                    example: '1'
+                        relationships:
+                          type: object
+                          properties:
+                            customer:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Customer
+                                      example: Customer
+                            discounts:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  data:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        pattern: \d{1,10}
+                                        example: '1'
+                                      type:
+                                        type: string
+                                        enum:
+                                        - Discount
+                                        example: Discount
+                            items:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  data:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        pattern: \d{1,10}
+                                        example: '1'
+                                      type:
+                                        type: string
+                                        enum:
+                                        - Item
+                                        example: Item
+                            payments:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  data:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        pattern: \d{1,10}
+                                        example: '1'
+                                      type:
+                                        type: string
+                                        enum:
+                                        - Payment
+                                        example: Payment
+                            tips:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  data:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        pattern: \d{1,10}
+                                        example: '1'
+                                      type:
+                                        type: string
+                                        enum:
+                                        - Tip
+                                        example: Tip
+                            shippingCosts:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  data:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        pattern: \d{1,10}
+                                        example: '1'
+                                      type:
+                                        type: string
+                                        enum:
+                                        - ShippingCost
+                                        example: ShippingCost
+                            table:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Table
+                                      example: Table
+                            waiter:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - User
+                                      example: User
+                            saleIdentifier:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - SaleIdentifier
+                            commercialDocuments:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  data:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        pattern: \d{1,10}
+                                        example: '1'
+                                      type:
+                                        type: string
+                                        enum:
+                                        - CommercialDocument
+                                        example: CommercialDocument
+                            orders:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  data:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        pattern: \d{1,10}
+                                        example: '1'
+                                      type:
+                                        type: string
+                                        enum:
+                                        - Order
+                                        example: Order
+    post:
+      summary: Create sale
+      tags:
+      - Sales
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - data
+              properties:
+                data:
+                  anyOf:
+                  - type: object
+                    additionalProperties: false
+                    required:
+                    - type
+                    - attributes
+                    - relationships
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - Sale
+                        example: Sale
+                      attributes:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - saleType
+                        - people
+                        properties:
+                          comment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          people:
+                            type: number
+                            minimum: 1
+                            maximum: 100
+                            example: 5
+                          saleType:
+                            type: string
+                            enum:
+                            - EAT-IN
+                            example: EAT-IN
+                          customerName:
+                            type: string
+                            minLength: 1
+                            maxLength: 90
+                            example: Paula
+                      relationships:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - table
+                        properties:
+                          saleIdentifier:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - SaleIdentifier
+                                    example: SaleIdentifier
+                          table:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Table
+                                    example: Table
+                          waiter:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - User
+                                    example: User
+                  - type: object
+                    additionalProperties: false
+                    required:
+                    - type
+                    - attributes
+                    - relationships
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - Sale
+                        example: Sale
+                      attributes:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - saleType
+                        - people
+                        properties:
+                          comment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          people:
+                            type: number
+                            minimum: 1
+                            maximum: 100
+                            example: 5
+                          saleType:
+                            type: string
+                            enum:
+                            - EAT-IN
+                            example: EAT-IN
+                      relationships:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - table
+                        properties:
+                          customer:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Customer
+                                    example: Customer
+                          saleIdentifier:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - SaleIdentifier
+                                    example: SaleIdentifier
+                          table:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Table
+                                    example: Table
+                          waiter:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - User
+                                    example: User
+                  - type: object
+                    additionalProperties: false
+                    required:
+                    - type
+                    - attributes
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - Sale
+                        example: Sale
+                      attributes:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - saleType
+                        properties:
+                          comment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          people:
+                            type: number
+                            minimum: 1
+                            maximum: 100
+                            example: 5
+                          customerName:
+                            type: string
+                            minLength: 1
+                            maxLength: 90
+                            example: Paula
+                          saleType:
+                            type: string
+                            enum:
+                            - TAKEAWAY
+                            example: TAKEAWAY
+                      relationships:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          saleIdentifier:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - SaleIdentifier
+                                    example: SaleIdentifier
+                          waiter:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - User
+                                    example: User
+                  - type: object
+                    additionalProperties: false
+                    required:
+                    - type
+                    - attributes
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - Sale
+                        example: Sale
+                      attributes:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - saleType
+                        properties:
+                          comment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          people:
+                            type: number
+                            minimum: 1
+                            maximum: 100
+                            example: 5
+                          saleType:
+                            type: string
+                            enum:
+                            - TAKEAWAY
+                            example: TAKEAWAY
+                      relationships:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          customer:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Customer
+                                    example: Customer
+                          saleIdentifier:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - SaleIdentifier
+                                    example: SaleIdentifier
+                          waiter:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - User
+                                    example: User
+                include:
+                  type: string
+                  pattern: ^((discounts|)(,(?!$))?)+$
+                  example: discounts
+      responses:
+        '201':
+          description: The created resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: '[0-9]+'
+                      type:
+                        type: string
+                        enum:
+                        - User
+                      attributes:
+                        type: object
+                        properties:
+                          closedAt:
+                            type: string
+                            example: '2020-05-11T23:15:00.000Z'
+                          comment:
+                            type: string
+                            example: This is a comment
+                          createdAt:
+                            type: string
+                            example: '2020-05-11T23:15:00.000Z'
+                          people:
+                            type: integer
+                            example: 2
+                          customerName:
+                            type: string
+                            example: Paula
+                          anonymousCustomer:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: Paula
+                              phone:
+                                type: string
+                                example: +54 11 1234 1234
+                              address:
+                                type: string
+                                example: '["Calle falsa", "123", "", "Springfield"]'
+                          total:
+                            type: number
+                            example: 1350.5
+                          saleType:
+                            type: string
+                            enum:
+                            - EAT-IN
+                            - TAKEAWAY
+                            example: EAT-IN
+                          saleState:
+                            type: string
+                            enum:
+                            - CANCELED
+                            - CLOSED
+                            - IN-COURSE
+                            example: IN-COURSE
+                          expectedPayments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                amount:
+                                  type: number
+                                  example: 100
+                                details:
+                                  type: string
+                                  example: '100'
+                                paymentMethodId:
+                                  type: string
+                                  example: '1'
+                      relationships:
+                        type: object
+                        properties:
+                          customer:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Customer
+                                    example: Customer
+                          discounts:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Discount
+                                      example: Discount
+                          items:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Item
+                                      example: Item
+                          payments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Payment
+                                      example: Payment
+                          tips:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Tip
+                                      example: Tip
+                          shippingCosts:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - ShippingCost
+                                      example: ShippingCost
+                          table:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Table
+                                    example: Table
+                          waiter:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - User
+                                    example: User
+                          saleIdentifier:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - SaleIdentifier
+                          commercialDocuments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - CommercialDocument
+                                      example: CommercialDocument
+                          orders:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Order
+                                      example: Order
+  /sales/{id}:
+    get:
+      summary: Get sale
+      tags:
+      - Sales
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: \d{1,10}
+          example: '1'
+      - name: include
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((cashRegister|closedBy|commercialDocuments|customer|discounts.discountTemplate|discounts|items.createdBy|items.product|items.product.invoiceInformation|items.product.productCategory.taxes|items.product.productCategory|items|items.subitems.product|items.subitems.product.productCategory.taxes|items.subitems.product.productCategory|items.subitems.product.invoiceInformation|items.subitems|orders|payments.paymentMethod|payments|tips|shippingCosts|table.room|table|waiter|saleIdentifier|serviceCosts|)(,(?!$))?)+$
+          example: items,table.room
+      - name: fields
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            cashRegister:
+              type: string
+              pattern: ^((name)(,(?!$))?)*$
+              example: name
+            discountTemplate:
+              type: string
+              pattern: ^((name)(,(?!$))?)*$
+              example: name
+            invoiceInformation:
+              type: string
+              pattern: ^((ncm|)(,(?!$))?)*$
+              example: ncm
+            order:
+              type: string
+              pattern: ^((origin)(,(?!$))?)*$
+              example: origin
+            sale:
+              type: string
+              pattern: ^((closedAt|comment|createdAt|people|customerName|anonymousCustomer|total|saleType|saleState|expectedPayments|customer|discounts|items|payments|tips|shippingCosts|table|waiter|saleIdentifier|commercialDocuments|cashRegister|serviceCosts|orders)(,(?!$))?)*$
+              example: items, waiter
+            serviceCost:
+              type: string
+              pattern: ^((amount|canceled|percentage|)(,(?!$))?)*$
+              example: amount
+      responses:
+        '200':
+          description: A single resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: '[0-9]+'
+                      type:
+                        type: string
+                        enum:
+                        - User
+                      attributes:
+                        type: object
+                        properties:
+                          closedAt:
+                            type: string
+                            example: '2020-05-11T23:15:00.000Z'
+                          comment:
+                            type: string
+                            example: This is a comment
+                          createdAt:
+                            type: string
+                            example: '2020-05-11T23:15:00.000Z'
+                          people:
+                            type: integer
+                            example: 2
+                          customerName:
+                            type: string
+                            example: Paula
+                          anonymousCustomer:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: Paula
+                              phone:
+                                type: string
+                                example: +54 11 1234 1234
+                              address:
+                                type: string
+                                example: '["Calle falsa", "123", "", "Springfield"]'
+                          total:
+                            type: number
+                            example: 1350.5
+                          saleType:
+                            type: string
+                            enum:
+                            - EAT-IN
+                            - TAKEAWAY
+                            example: EAT-IN
+                          saleState:
+                            type: string
+                            enum:
+                            - CANCELED
+                            - CLOSED
+                            - IN-COURSE
+                            example: IN-COURSE
+                          expectedPayments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                amount:
+                                  type: number
+                                  example: 100
+                                details:
+                                  type: string
+                                  example: '100'
+                                paymentMethodId:
+                                  type: string
+                                  example: '1'
+                      relationships:
+                        type: object
+                        properties:
+                          customer:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Customer
+                                    example: Customer
+                          discounts:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Discount
+                                      example: Discount
+                          items:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Item
+                                      example: Item
+                          payments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Payment
+                                      example: Payment
+                          tips:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Tip
+                                      example: Tip
+                          shippingCosts:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - ShippingCost
+                                      example: ShippingCost
+                          table:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Table
+                                    example: Table
+                          waiter:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - User
+                                    example: User
+                          saleIdentifier:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - SaleIdentifier
+                          commercialDocuments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - CommercialDocument
+                                      example: CommercialDocument
+                          orders:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Order
+                                      example: Order
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          example: '404'
+                        title:
+                          type: string
+                          example: Not Found
+    patch:
+      summary: Update sale
+      tags:
+      - Sales
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: \d{1,10}
+          example: '1'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - data
+              properties:
+                data:
+                  anyOf:
+                  - type: object
+                    additionalProperties: false
+                    anyOf:
+                    - required:
+                      - id
+                      - type
+                      - attributes
+                    - required:
+                      - id
+                      - type
+                      - relationships
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^\d{1,10}$
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Sale
+                        example: Sale
+                      attributes:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          comment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          people:
+                            type: number
+                            minimum: 1
+                            maximum: 100
+                            example: 3
+                          customerName:
+                            type:
+                            - string
+                            - 'null'
+                            minLength: 1
+                            maxLength: 90
+                            example: Paula
+                          saleState:
+                            type: string
+                            enum:
+                            - CANCELED
+                            - CLOSED
+                            - IN-COURSE
+                            - PAYMENT-PROCESS
+                            example: CLOSED
+                          saleType:
+                            type: string
+                            enum:
+                            - EAT-IN
+                            example: EAT-IN
+                      relationships:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          saleIdentifier:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type:
+                                - object
+                                - 'null'
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - SaleIdentifier
+                                    example: SaleIdentifier
+                          table:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Table
+                                    example: Table
+                          waiter:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type:
+                                - object
+                                - 'null'
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - User
+                                    example: User
+                          customer:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: 'null'
+                                example: 'null'
+                  - type: object
+                    additionalProperties: false
+                    anyOf:
+                    - required:
+                      - id
+                      - type
+                      - attributes
+                    - required:
+                      - id
+                      - type
+                      - relationships
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^\d{1,10}$
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Sale
+                        example: Sale
+                      attributes:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          comment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          people:
+                            type: number
+                            minimum: 1
+                            maximum: 100
+                            example: 3
+                          saleState:
+                            type: string
+                            enum:
+                            - CANCELED
+                            - CLOSED
+                            - IN-COURSE
+                            - PAYMENT-PROCESS
+                            example: CLOSED
+                          customerName:
+                            type: 'null'
+                            example: 'null'
+                          saleType:
+                            type: string
+                            enum:
+                            - EAT-IN
+                            example: EAT-IN
+                      relationships:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          customer:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type:
+                                - object
+                                - 'null'
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Customer
+                                    example: Customer
+                          saleIdentifier:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type:
+                                - object
+                                - 'null'
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - SaleIdentifier
+                                    example: SaleIdentifier
+                          table:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Table
+                                    example: Table
+                          waiter:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type:
+                                - object
+                                - 'null'
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - User
+                                    example: User
+                  - type: object
+                    additionalProperties: false
+                    required:
+                    - id
+                    - type
+                    - attributes
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^\d{1,10}$
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Sale
+                        example: Sale
+                      attributes:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          comment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          people:
+                            type: number
+                            minimum: 1
+                            maximum: 100
+                            example: 3
+                          saleState:
+                            type: string
+                            enum:
+                            - CANCELED
+                            - CLOSED
+                            - IN-COURSE
+                            - PAYMENT-PROCESS
+                            example: CLOSED
+                          saleType:
+                            type: string
+                            enum:
+                            - EAT-IN
+                            example: EAT-IN
+                  - type: object
+                    additionalProperties: false
+                    required:
+                    - id
+                    - type
+                    - attributes
+                    - relationships
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^\d{1,10}$
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Sale
+                        example: Sale
+                      attributes:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          saleType:
+                            type: string
+                            enum:
+                            - TAKEAWAY
+                            example: TAKEAWAY
+                      relationships:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - table
+                        properties:
+                          table:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: 'null'
+                                additionalProperties: false
+                include:
+                  type: string
+                  pattern: ^((discounts|items|payments|tips)(,(?!$))?)+$
+                  example: discounts
+      responses:
+        '200':
+          description: The updated resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: '[0-9]+'
+                      type:
+                        type: string
+                        enum:
+                        - User
+                      attributes:
+                        type: object
+                        properties:
+                          closedAt:
+                            type: string
+                            example: '2020-05-11T23:15:00.000Z'
+                          comment:
+                            type: string
+                            example: This is a comment
+                          createdAt:
+                            type: string
+                            example: '2020-05-11T23:15:00.000Z'
+                          people:
+                            type: integer
+                            example: 2
+                          customerName:
+                            type: string
+                            example: Paula
+                          anonymousCustomer:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: Paula
+                              phone:
+                                type: string
+                                example: +54 11 1234 1234
+                              address:
+                                type: string
+                                example: '["Calle falsa", "123", "", "Springfield"]'
+                          total:
+                            type: number
+                            example: 1350.5
+                          saleType:
+                            type: string
+                            enum:
+                            - EAT-IN
+                            - TAKEAWAY
+                            example: EAT-IN
+                          saleState:
+                            type: string
+                            enum:
+                            - CANCELED
+                            - CLOSED
+                            - IN-COURSE
+                            example: IN-COURSE
+                          expectedPayments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                amount:
+                                  type: number
+                                  example: 100
+                                details:
+                                  type: string
+                                  example: '100'
+                                paymentMethodId:
+                                  type: string
+                                  example: '1'
+                      relationships:
+                        type: object
+                        properties:
+                          customer:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Customer
+                                    example: Customer
+                          discounts:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Discount
+                                      example: Discount
+                          items:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Item
+                                      example: Item
+                          payments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Payment
+                                      example: Payment
+                          tips:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Tip
+                                      example: Tip
+                          shippingCosts:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - ShippingCost
+                                      example: ShippingCost
+                          table:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Table
+                                    example: Table
+                          waiter:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - User
+                                    example: User
+                          saleIdentifier:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - SaleIdentifier
+                          commercialDocuments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - CommercialDocument
+                                      example: CommercialDocument
+                          orders:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Order
+                                      example: Order
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          example: '404'
+                        title:
+                          type: string
+                          example: Not Found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'From here you can assign a value to the authorization header to be able
+
+        to perform tests from this interface. The value to assign must be the
+
+        token obtained from the authentication endpoint, as explained above.
+
+
+        ###
+
+        '

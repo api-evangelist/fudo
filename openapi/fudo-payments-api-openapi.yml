@@ -1,0 +1,906 @@
+openapi: 3.1.0
+info:
+  version: v1alpha1
+  title: Fudo Customers Payments API
+  description: "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n"
+servers:
+- url: https://api.fu.do/v1alpha1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Payments
+paths:
+  /payments:
+    get:
+      summary: Get payments
+      tags:
+      - Payments
+      parameters:
+      - name: page
+        in: query
+        description: Page number and size.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            number:
+              type: string
+              pattern: ^\d+$
+            size:
+              type: string
+              pattern: ^\d+$
+      - name: sort
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((-?id|)(,(?!$))?)+$
+          example:
+          - id
+          - -id
+      - name: fields
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            payment:
+              type: string
+              pattern: ^((amount|canceled|createdAt|expectedBy|externalReference|paidAt|paymentMethod|receivedAmount|receivedBy)(,(?!$))?)*$
+              example: amount,createdAt
+            paymentMethod:
+              type: string
+              pattern: ^((feePercentage|kind|name|payoutSettings|processor)(,(?!$))?)*$
+              example: name,processor
+      - name: include
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((paymentMethod)(,(?!$))?)+$
+          example: paymentMethod
+      - name: filter
+        in: query
+        description: Object in the form of filter[column]=value.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            amount:
+              type: string
+              pattern: ^(gte|gt|lte|lt|eq)\.-?\d+(\.\d+)?$
+              example: gte.0
+            canceled:
+              type: string
+              pattern: ^(neq|eq)\.true$
+              example: neq.true
+            createdAt:
+              type: string
+              pattern: (^(gte|lte)\.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?)|(^and\(gte\.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?\,lte.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?\))
+              example: and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)
+            paidAt:
+              type: string
+              pattern: (^(gte|lte)\.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?)|(^and\(gte\.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?\,lte.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?\))
+              example: and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)
+            receivedBy:
+              type: string
+              pattern: (^(is|isdistinct)\.null$)|(^(gte|gt|lte|lt)\.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?$)
+              example: is.null
+            expenseId:
+              type: string
+              pattern: ^(is|isdistinct)\.null$
+              example: is.null
+            financialAccount:
+              type: object
+              additionalProperties: false
+              properties:
+                id:
+                  type: string
+                  pattern: ^eq\.\d+$
+                  example: eq.1
+            paymentMethod:
+              type: object
+              additionalProperties: false
+              properties:
+                id:
+                  type: string
+                  pattern: ^eq\.\d+$
+                  example: eq.1
+                kind:
+                  type: string
+                  pattern: ^in\.\(([A-Z_-]+(,(?!$))?)+\)$
+                  example: in.(DEBIT-CARD,CREDIT-CARD)
+                processor:
+                  type: string
+                  pattern: ^eq\..{1,45}$
+                  example: eq.MERCADO-PAGO
+            sales:
+              type: object
+              additionalProperties: false
+              properties:
+                createdAt:
+                  type: string
+                  pattern: (^(gte|lte)\.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?)|(^and\(gte\.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?\,lte.\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z)?\))
+                  example: and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)
+                saleState:
+                  type: string
+                  pattern: ^in\.\(((CLOSED)(,(?!$))?)+\)$
+                  example: in.(CLOSED)
+      responses:
+        '200':
+          description: A list of resources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          pattern: \d{1,10}
+                          example: '1'
+                        type:
+                          type: string
+                          enum:
+                          - Payment
+                          example: Payment
+                        attributes:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                              example: 150
+                            canceled:
+                              type: boolean
+                              example: false
+                            createdAt:
+                              type: string
+                              example: '2020-05-11T23:15:00.000Z'
+                            external_reference:
+                              type: string
+                              example: abcdef
+                        relationships:
+                          type: object
+                          properties:
+                            paymentMethod:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - PaymentMethod
+                                      example: PaymentMethod
+                            sale:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Sale
+                                      example: Sale
+                            expense:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Expense
+                                      example: Expense
+    post:
+      summary: Create payments
+      tags:
+      - Payments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - data
+              properties:
+                data:
+                  anyOf:
+                  - type: object
+                    additionalProperties: false
+                    required:
+                    - type
+                    - attributes
+                    - relationships
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - Payment
+                        example: Payment
+                      attributes:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - amount
+                        properties:
+                          amount:
+                            type: number
+                            minimum: 0
+                            example: 100.5
+                          extraData:
+                            type: object
+                            additionalProperties: false
+                            minProperties: 1
+                            properties:
+                              installments:
+                                type: integer
+                                minimum: 1
+                                maximum: 24
+                              cardIssuer:
+                                type: string
+                                minLength: 1
+                                maxLength: 100
+                              cardType:
+                                type: string
+                                enum:
+                                - DEBIT
+                                - CREDIT
+                              entryType:
+                                type: string
+                                enum:
+                                - CHIP
+                                - CONTACTLESS
+                                - MAGSTRIPE
+                              paymentProvider:
+                                type: string
+                                enum:
+                                - MERCADOPAGO
+                                - MERCADO-PAGO
+                              paymentType:
+                                type: string
+                                enum:
+                                - CARD
+                                - QR
+                              deviceOs:
+                                type: string
+                                enum:
+                                - ANDROID
+                                - IOS
+                              deviceSerialNumber:
+                                type: string
+                              externalReference:
+                                type: string
+                              totalAmount:
+                                type: number
+                                minimum: 0
+                                example: 100
+                              financialAmount:
+                                type: number
+                                minimum: 0
+                                example: 100
+                      relationships:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - paymentMethod
+                        - sale
+                        properties:
+                          paymentMethod:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - PaymentMethod
+                                    example: PaymentMethod
+                          sale:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+                  - type: object
+                    additionalProperties: false
+                    required:
+                    - type
+                    - attributes
+                    - relationships
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - Payment
+                        example: Payment
+                      attributes:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - amount
+                        properties:
+                          amount:
+                            type: number
+                            minimum: 0
+                            example: 100.5
+                          paidAt:
+                            type: string
+                            pattern: \d{4}-\d{2}-\d{2}
+                      relationships:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - paymentMethod
+                        - expense
+                        properties:
+                          paymentMethod:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - PaymentMethod
+                                    example: PaymentMethod
+                          expense:
+                            type: object
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Expense
+                                    example: Expense
+                          cashRegister:
+                            type:
+                            - object
+                            - 'null'
+                            additionalProperties: false
+                            required:
+                            - data
+                            properties:
+                              data:
+                                type:
+                                - object
+                                - 'null'
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - CashRegister
+                                    example: CashRegister
+      responses:
+        '201':
+          description: The created resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: \d{1,10}
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Payment
+                        example: Payment
+                      attributes:
+                        type: object
+                        properties:
+                          amount:
+                            type: number
+                            example: 150
+                          canceled:
+                            type: boolean
+                            example: false
+                          createdAt:
+                            type: string
+                            example: '2020-05-11T23:15:00.000Z'
+                          external_reference:
+                            type: string
+                            example: abcdef
+                      relationships:
+                        type: object
+                        properties:
+                          paymentMethod:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - PaymentMethod
+                                    example: PaymentMethod
+                          sale:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+                          expense:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Expense
+                                    example: Expense
+  /payments/{id}:
+    get:
+      summary: Get payment
+      tags:
+      - Payments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: \d{1,10}
+          example: '1'
+      - name: fields
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            payment:
+              type: string
+              pattern: ^((amount|canceled|createdAt|expectedBy|externalReference|paidAt|paymentMethod|receivedAmount|receivedBy)(,(?!$))?)*$
+              example: amount,createdAt
+            paymentMethod:
+              type: string
+              pattern: ^((feePercentage|kind|name|payoutSettings|processor)(,(?!$))?)*$
+              example: name,processor
+      - name: include
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((paymentMethod)(,(?!$))?)+$
+          example: paymentMethod
+      responses:
+        '200':
+          description: A single resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: \d{1,10}
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Payment
+                        example: Payment
+                      attributes:
+                        type: object
+                        properties:
+                          amount:
+                            type: number
+                            example: 150
+                          canceled:
+                            type: boolean
+                            example: false
+                          createdAt:
+                            type: string
+                            example: '2020-05-11T23:15:00.000Z'
+                          external_reference:
+                            type: string
+                            example: abcdef
+                      relationships:
+                        type: object
+                        properties:
+                          paymentMethod:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - PaymentMethod
+                                    example: PaymentMethod
+                          sale:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+                          expense:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Expense
+                                    example: Expense
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          example: '404'
+                        title:
+                          type: string
+                          example: Not Found
+    patch:
+      summary: Update payment
+      tags:
+      - Payments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: \d{1,10}
+          example: '1'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - data
+              properties:
+                data:
+                  type: object
+                  additionalProperties: false
+                  required:
+                  - id
+                  - type
+                  - attributes
+                  properties:
+                    id:
+                      type: string
+                      pattern: ^\d{1,10}$
+                      example: '1'
+                    type:
+                      type: string
+                      enum:
+                      - Payment
+                      example: Payment
+                    attributes:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        amount:
+                          type: number
+                        canceled:
+                          type: boolean
+                        paidAt:
+                          type: string
+                          pattern: ^\d{4}-\d{2}-\d{2}$
+                        receivedAmount:
+                          type: number
+                          example: 950.0
+                        receivedBy:
+                          type:
+                          - string
+                          - 'null'
+                          example: '2025-01-15T10:30:00Z'
+                        useInCashCount:
+                          type: boolean
+                          example: true
+                    relationships:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        paymentMethod:
+                          type: object
+                          additionalProperties: false
+                          required:
+                          - data
+                          properties:
+                            data:
+                              type: object
+                              additionalProperties: false
+                              required:
+                              - id
+                              - type
+                              properties:
+                                id:
+                                  type: string
+                                  pattern: ^\d{1,10}$
+                                  example: '1'
+                                type:
+                                  type: string
+                                  enum:
+                                  - PaymentMethod
+                                  example: PaymentMethod
+                        cashRegister:
+                          type:
+                          - object
+                          - 'null'
+                          additionalProperties: false
+                          required:
+                          - data
+                          properties:
+                            data:
+                              type:
+                              - object
+                              - 'null'
+                              additionalProperties: false
+                              required:
+                              - id
+                              - type
+                              properties:
+                                id:
+                                  type: string
+                                  pattern: ^\d{1,10}$
+                                  example: '1'
+                                type:
+                                  type: string
+                                  enum:
+                                  - CashRegister
+                                  example: CashRegister
+      responses:
+        '200':
+          description: The updated resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: \d{1,10}
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Payment
+                        example: Payment
+                      attributes:
+                        type: object
+                        properties:
+                          amount:
+                            type: number
+                            example: 150
+                          canceled:
+                            type: boolean
+                            example: false
+                          createdAt:
+                            type: string
+                            example: '2020-05-11T23:15:00.000Z'
+                          external_reference:
+                            type: string
+                            example: abcdef
+                      relationships:
+                        type: object
+                        properties:
+                          paymentMethod:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - PaymentMethod
+                                    example: PaymentMethod
+                          sale:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+                          expense:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Expense
+                                    example: Expense
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          example: '404'
+                        title:
+                          type: string
+                          example: Not Found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'From here you can assign a value to the authorization header to be able
+
+        to perform tests from this interface. The value to assign must be the
+
+        token obtained from the authentication endpoint, as explained above.
+
+
+        ###
+
+        '

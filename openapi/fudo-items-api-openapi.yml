@@ -1,0 +1,1008 @@
+openapi: 3.1.0
+info:
+  version: v1alpha1
+  title: Fudo Customers Items API
+  description: "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n"
+servers:
+- url: https://api.fu.do/v1alpha1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Items
+paths:
+  /items:
+    get:
+      summary: Get items
+      tags:
+      - Items
+      parameters:
+      - name: fields
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            item:
+              type: string
+              pattern: ^((canceled|cancellationComment|cancellationReason|comment|cost|createdAt|price|product|quantity|sale|status|subitems|paid|priceList|lastStockCountAt )(,(?!$))?)*$
+              example: price,quantity
+            product:
+              type: string
+              pattern: ^((active|code|description|enableOnlineMenu|enableQrMenu|favourite|imageUrl|kitchen|name|position|price|productCategory|productModifiersGroups|sellAlone|stockControl|stock)(,(?!$))?)*$
+              example: name
+            subitem:
+              type: string
+              pattern: ^((comment|cost|createdAt|price|quantity|status)(,(?!$))?)*$
+              example: price
+      - name: page
+        in: query
+        description: Page number and size.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            number:
+              type: string
+              pattern: ^\d+$
+            size:
+              type: string
+              pattern: ^\d+$
+      - name: sort
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((-?id|-?createdAt)(,(?!$))?)+$
+          example:
+          - id
+          - -id
+          - createdAt
+          - -createdAt
+      - name: include
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((product|subitems.product|subitems)(,(?!$))?)+$
+          example: product
+      responses:
+        '200':
+          description: A list of resources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          pattern: '[0-9]+'
+                          example: '1'
+                        type:
+                          type: string
+                          enum:
+                          - Item
+                          example: Item
+                        attributes:
+                          type: object
+                          properties:
+                            canceled:
+                              type: boolean
+                              example: false
+                            cancellationComment:
+                              type: string
+                              minLength: 1
+                              maxLength: 255
+                              example: This is a comment
+                            cancellationReason:
+                              type:
+                              - string
+                              - 'null'
+                              enum:
+                              - 'null'
+                              - CANCELED-BY-GUEST
+                              - DELAY-IN-KITCHEN
+                              - ERROR
+                              - GUEST-DISSATISFACTION
+                              - ITEM-CHANGE
+                              - NOT-AVAILABLE
+                              - OTHER
+                              - TEST
+                              example: CANCELED-BY-GUEST
+                            comment:
+                              type: string
+                              minLength: 1
+                              maxLength: 255
+                              example: This is a comment
+                            createdAt:
+                              type: string
+                              format: date-time
+                              example: '2020-05-11T23:15:00.000Z'
+                            price:
+                              type: number
+                              example: 100
+                            quantity:
+                              type: number
+                              example: 3
+                            status:
+                              type:
+                              - string
+                              - 'null'
+                              enum:
+                              - 'null'
+                              - PENDING
+                              - IN-COURSE
+                              - READY
+                              - SERVED
+                              example: IN-COURSE
+                            paid:
+                              type: boolean
+                              example: false
+                        relationships:
+                          type: object
+                          properties:
+                            priceList:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - PriceList
+                                      example: PriceList
+                            product:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Product
+                                      example: Product
+                            subitems:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  data:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        pattern: \d{1,10}
+                                        example: '2'
+                                      type:
+                                        type: string
+                                        enum:
+                                        - Item
+                                        example: Item
+                            sale:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '1'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Sale
+                                      example: Sale
+    post:
+      summary: Create item
+      tags:
+      - Items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - data
+              properties:
+                data:
+                  type: object
+                  additionalProperties: false
+                  required:
+                  - type
+                  - attributes
+                  - relationships
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - Item
+                      example: Item
+                    attributes:
+                      type: object
+                      additionalProperties: false
+                      required:
+                      - quantity
+                      properties:
+                        comment:
+                          type: string
+                          minLength: 1
+                          maxLength: 255
+                          example: This is a comment
+                        price:
+                          type: number
+                          minimum: 0
+                          example: 100
+                        quantity:
+                          type: number
+                          example: 3
+                        origin:
+                          type: string
+                          enum:
+                          - MOBILE
+                          example: MOBILE
+                        uuid:
+                          type: string
+                          format: uuid4
+                          example: a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11
+                    relationships:
+                      type: object
+                      additionalProperties: false
+                      required:
+                      - product
+                      - sale
+                      properties:
+                        priceList:
+                          type: object
+                          additionalProperties: false
+                          required:
+                          - data
+                          properties:
+                            data:
+                              type: object
+                              additionalProperties: false
+                              required:
+                              - id
+                              - type
+                              properties:
+                                id:
+                                  type: string
+                                  pattern: ^\d{1,10}$
+                                  example: '1'
+                                type:
+                                  type: string
+                                  enum:
+                                  - PriceList
+                                  example: PriceList
+                        product:
+                          type: object
+                          additionalProperties: false
+                          required:
+                          - data
+                          properties:
+                            data:
+                              type: object
+                              additionalProperties: false
+                              required:
+                              - id
+                              - type
+                              properties:
+                                id:
+                                  type: string
+                                  pattern: ^\d{1,10}$
+                                  example: '1'
+                                type:
+                                  type: string
+                                  enum:
+                                  - Product
+                                  example: Product
+                        sale:
+                          type: object
+                          additionalProperties: false
+                          required:
+                          - data
+                          properties:
+                            data:
+                              oneOf:
+                              - type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+                              - type: object
+                                additionalProperties: false
+                                required:
+                                - lid
+                                - type
+                                properties:
+                                  lid:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+      responses:
+        '201':
+          description: The created resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: '[0-9]+'
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Item
+                        example: Item
+                      attributes:
+                        type: object
+                        properties:
+                          canceled:
+                            type: boolean
+                            example: false
+                          cancellationComment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          cancellationReason:
+                            type:
+                            - string
+                            - 'null'
+                            enum:
+                            - 'null'
+                            - CANCELED-BY-GUEST
+                            - DELAY-IN-KITCHEN
+                            - ERROR
+                            - GUEST-DISSATISFACTION
+                            - ITEM-CHANGE
+                            - NOT-AVAILABLE
+                            - OTHER
+                            - TEST
+                            example: CANCELED-BY-GUEST
+                          comment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          createdAt:
+                            type: string
+                            format: date-time
+                            example: '2020-05-11T23:15:00.000Z'
+                          price:
+                            type: number
+                            example: 100
+                          quantity:
+                            type: number
+                            example: 3
+                          status:
+                            type:
+                            - string
+                            - 'null'
+                            enum:
+                            - 'null'
+                            - PENDING
+                            - IN-COURSE
+                            - READY
+                            - SERVED
+                            example: IN-COURSE
+                          paid:
+                            type: boolean
+                            example: false
+                      relationships:
+                        type: object
+                        properties:
+                          priceList:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - PriceList
+                                    example: PriceList
+                          product:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Product
+                                    example: Product
+                          subitems:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '2'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Item
+                                      example: Item
+                          sale:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+  /items/{id}:
+    get:
+      summary: Get item
+      tags:
+      - Items
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: \d{1,10}
+          example: '1'
+      - name: fields
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            item:
+              type: string
+              pattern: ^((canceled|cancellationComment|cancellationReason|comment|cost|createdAt|price|product|quantity|sale|status|subitems|paid|priceList|lastStockCountAt )(,(?!$))?)*$
+              example: price,quantity
+            product:
+              type: string
+              pattern: ^((active|code|description|enableOnlineMenu|enableQrMenu|favourite|imageUrl|kitchen|name|position|price|productCategory|productModifiersGroups|sellAlone|stockControl|stock)(,(?!$))?)*$
+              example: name
+            subitem:
+              type: string
+              pattern: ^((comment|cost|createdAt|price|quantity|status)(,(?!$))?)*$
+              example: price
+      - name: include
+        in: query
+        description: Comma-separated list. See pattern for possible values.
+        schema:
+          type: string
+          pattern: ^((product|subitems.product|subitems)(,(?!$))?)+$
+          example: product
+      responses:
+        '200':
+          description: A single resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: '[0-9]+'
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Item
+                        example: Item
+                      attributes:
+                        type: object
+                        properties:
+                          canceled:
+                            type: boolean
+                            example: false
+                          cancellationComment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          cancellationReason:
+                            type:
+                            - string
+                            - 'null'
+                            enum:
+                            - 'null'
+                            - CANCELED-BY-GUEST
+                            - DELAY-IN-KITCHEN
+                            - ERROR
+                            - GUEST-DISSATISFACTION
+                            - ITEM-CHANGE
+                            - NOT-AVAILABLE
+                            - OTHER
+                            - TEST
+                            example: CANCELED-BY-GUEST
+                          comment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          createdAt:
+                            type: string
+                            format: date-time
+                            example: '2020-05-11T23:15:00.000Z'
+                          price:
+                            type: number
+                            example: 100
+                          quantity:
+                            type: number
+                            example: 3
+                          status:
+                            type:
+                            - string
+                            - 'null'
+                            enum:
+                            - 'null'
+                            - PENDING
+                            - IN-COURSE
+                            - READY
+                            - SERVED
+                            example: IN-COURSE
+                          paid:
+                            type: boolean
+                            example: false
+                      relationships:
+                        type: object
+                        properties:
+                          priceList:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - PriceList
+                                    example: PriceList
+                          product:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Product
+                                    example: Product
+                          subitems:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '2'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Item
+                                      example: Item
+                          sale:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          example: '404'
+                        title:
+                          type: string
+                          example: Not Found
+    patch:
+      summary: Update item
+      tags:
+      - Items
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: \d{1,10}
+          example: '1'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - data
+              properties:
+                data:
+                  type: object
+                  additionalProperties: false
+                  required:
+                  - id
+                  - type
+                  - attributes
+                  properties:
+                    id:
+                      type: string
+                      pattern: ^\d{1,10}$
+                      example: '1'
+                    type:
+                      type: string
+                      enum:
+                      - Item
+                      example: Item
+                    attributes:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        canceled:
+                          type: boolean
+                          enum:
+                          - true
+                          example: true
+                        cancellationComment:
+                          type: string
+                          minLength: 1
+                          maxLength: 255
+                          example: This is a comment
+                        cancellationReason:
+                          type:
+                          - string
+                          enum:
+                          - CANCELED-BY-GUEST
+                          - DELAY-IN-KITCHEN
+                          - ERROR
+                          - GUEST-DISSATISFACTION
+                          - ITEM-CHANGE
+                          - NOT-AVAILABLE
+                          - OTHER
+                          - TEST
+                          example: CANCELED-BY-GUEST
+                        status:
+                          type:
+                          - string
+                          enum:
+                          - PENDING
+                          - IN-COURSE
+                          - READY
+                          - SERVED
+                          example: READY
+                        paid:
+                          type: boolean
+                          example: false
+                        quantity:
+                          type: number
+                          minimum: 0
+                      anyOf:
+                      - allOf:
+                        - required:
+                          - canceled
+                        - anyOf:
+                          - required:
+                            - cancellationReason
+                          - required:
+                            - cancellationComment
+                      - not:
+                          anyOf:
+                          - required:
+                            - canceled
+                          - required:
+                            - cancellationComment
+                          - required:
+                            - cancellationReason
+                    relationships:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        sale:
+                          type: object
+                          additionalProperties: false
+                          required:
+                          - data
+                          properties:
+                            data:
+                              anyOf:
+                              - type: object
+                                additionalProperties: false
+                                required:
+                                - id
+                                - type
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+                              - type: object
+                                additionalProperties: false
+                                required:
+                                - lid
+                                - type
+                                properties:
+                                  lid:
+                                    type: string
+                                    pattern: ^\d{1,10}$
+                                    description: 'Local ID of a Sale created in the same atomic:operations request
+
+                                      '
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+      responses:
+        '200':
+          description: The updated resource
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: '[0-9]+'
+                        example: '1'
+                      type:
+                        type: string
+                        enum:
+                        - Item
+                        example: Item
+                      attributes:
+                        type: object
+                        properties:
+                          canceled:
+                            type: boolean
+                            example: false
+                          cancellationComment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          cancellationReason:
+                            type:
+                            - string
+                            - 'null'
+                            enum:
+                            - 'null'
+                            - CANCELED-BY-GUEST
+                            - DELAY-IN-KITCHEN
+                            - ERROR
+                            - GUEST-DISSATISFACTION
+                            - ITEM-CHANGE
+                            - NOT-AVAILABLE
+                            - OTHER
+                            - TEST
+                            example: CANCELED-BY-GUEST
+                          comment:
+                            type: string
+                            minLength: 1
+                            maxLength: 255
+                            example: This is a comment
+                          createdAt:
+                            type: string
+                            format: date-time
+                            example: '2020-05-11T23:15:00.000Z'
+                          price:
+                            type: number
+                            example: 100
+                          quantity:
+                            type: number
+                            example: 3
+                          status:
+                            type:
+                            - string
+                            - 'null'
+                            enum:
+                            - 'null'
+                            - PENDING
+                            - IN-COURSE
+                            - READY
+                            - SERVED
+                            example: IN-COURSE
+                          paid:
+                            type: boolean
+                            example: false
+                      relationships:
+                        type: object
+                        properties:
+                          priceList:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - PriceList
+                                    example: PriceList
+                          product:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Product
+                                    example: Product
+                          subitems:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      pattern: \d{1,10}
+                                      example: '2'
+                                    type:
+                                      type: string
+                                      enum:
+                                      - Item
+                                      example: Item
+                          sale:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    pattern: \d{1,10}
+                                    example: '1'
+                                  type:
+                                    type: string
+                                    enum:
+                                    - Sale
+                                    example: Sale
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          example: '404'
+                        title:
+                          type: string
+                          example: Not Found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'From here you can assign a value to the authorization header to be able
+
+        to perform tests from this interface. The value to assign must be the
+
+        token obtained from the authentication endpoint, as explained above.
+
+
+        ###
+
+        '
