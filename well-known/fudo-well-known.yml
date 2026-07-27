@@ -1,0 +1,22 @@
+generated: '2026-07-19'
+method: probed
+host: https://api.fu.do
+note: >-
+  Probed the standard /.well-known/ discovery surface on the API host and the
+  marketing host. The API host requires authentication for every path (401) and
+  the marketing host redirects (302); no discovery document returned 200, so no
+  raw files were saved and no WellKnown/SecurityTxt pointer is wired. Absence is
+  recorded here as valid data.
+documents:
+- path: https://api.fu.do/.well-known/security.txt
+  status: 401
+- path: https://api.fu.do/.well-known/openid-configuration
+  status: 401
+- path: https://api.fu.do/.well-known/oauth-authorization-server
+  status: 401
+- path: https://api.fu.do/.well-known/ai-plugin.json
+  status: 401
+- path: https://fu.do/.well-known/security.txt
+  status: 302
+- path: https://fu.do/.well-known/api-catalog
+  status: 302

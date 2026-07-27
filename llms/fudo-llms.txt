@@ -1,0 +1,44 @@
+# Fudo
+
+> Fudo is a cloud-based point-of-sale and restaurant management platform used by more than 25,000 restaurants, bars, and cafes across Latin America. Its general-purpose public REST API (OpenAPI 3.1, JSON:API conventions) lets Pro-plan accounts read and write sales, payments, products, customers, expenses, inventory, and system configuration for reporting, BI, ERP, and custom integrations.
+
+## API
+
+- [Fudo API reference (RapiDoc)](https://dev.fu.do/api/): Interactive OpenAPI 3.1 reference for the v1alpha1 API.
+- [Production base URL](https://api.fu.do/v1alpha1): All resource endpoints live under this path.
+- [Authentication endpoint](https://auth.fu.do/api): POST apiKey + apiSecret to obtain a 24-hour bearer token.
+
+## Specs
+
+- [OpenAPI (verbatim)](https://api.fu.do/v1alpha1/openapi.yml): Fudo's published OpenAPI 3.1 document.
+- [OpenAPI (repo copy)](openapi/fudo-openapi-original.yml)
+- [OpenAPI Overlay (AE enhancements)](overlays/fudo-openapi-overlay.yaml)
+
+## Conventions
+
+- [API conventions](conventions/fudo-conventions.yml): JSON:API envelope, page[size]/page[number] pagination (default 250, max 500), PostgREST-style filter[column]=op.value filtering, bearer auth.
+- [Authentication profile](authentication/fudo-authentication.yml): apiKey/apiSecret exchange for a bearer token, Pro-plan gated, role-scoped.
+- [Error catalog](errors/fudo-problem-types.yml): JSON:API error objects (401/403/404/422).
+- [Data model](data-model/fudo-data-model.yml): 18 entities and their JSON:API relationships.
+- [Lifecycle](lifecycle/fudo-lifecycle.yml): uri-path versioning, current v1alpha1 (alpha).
+- [Conformance](conformance/fudo-conformance.yml): OpenAPI 3.1, JSON:API, bearer auth.
+
+## Resources
+
+- Customers, Sales, Payments, Payment Methods, Products, Product Categories, Product Modifiers, Items, Subitems, Ingredients, Discounts, Expenses, Expense Categories, Providers, Kitchens, Rooms, Tables, Roles, Users (74 operations across 19 tags).
+
+## Docs
+
+- [Developer portal / API docs](https://dev.fu.do/api/)
+- [Public API help article](https://soporte.fu.do/es/articles/11939789-api-publica-de-proposito-general)
+- [Help center](https://soporte.fu.do)
+- [Blog](https://blog.fu.do/)
+- [Pricing](https://fu.do/es/precios/)
+
+## Optional
+
+- [Website](https://fu.do)
+- [Sign up](https://fu.do/es/crear-cuenta/)
+- [Login](https://app-v2.fu.do/)
+- [Terms of service](https://fu.do/condiciones-de-servicio/)
+- [Privacy policy](https://fu.do/es/politicas-de-privacidad/)

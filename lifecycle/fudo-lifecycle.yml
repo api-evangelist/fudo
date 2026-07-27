@@ -1,0 +1,26 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/fudo-openapi-original.yml
+docs: https://dev.fu.do/api/
+versioning:
+  scheme: uri-path
+  current: v1alpha1
+  stability: alpha
+  note: >-
+    The single production server is https://api.fu.do/v1alpha1; the "v1alpha1"
+    label indicates an early-stage/alpha API version.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation or Sunset/Deprecation (RFC 8594) policy was found.
+sla:
+  url: null
+  note: No public SLA/uptime commitment found.
+status_page: null
+status_page_note: No dedicated public status page found on the Fudo or dev.fu.do surface.
+token_lifecycle:
+  access_token_ttl_hours: 24
+  note: >-
+    API access tokens expire 24 hours after issuance (exp field in the auth
+    response); credentials are Pro-plan gated.
+deprecated_operations: []

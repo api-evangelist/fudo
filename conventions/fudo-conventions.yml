@@ -1,0 +1,59 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/fudo-openapi-original.yml
+docs: https://dev.fu.do/api/
+authentication:
+  style: bearer-token
+  header: 'Authorization: Bearer <token>'
+  token_endpoint: https://auth.fu.do/api
+  token_ttl_hours: 24
+  cross_ref: authentication/fudo-authentication.yml
+envelope:
+  style: json:api
+  request: '{ "data": { "type": "<Resource>", "attributes": {...}, "relationships": {...} } }'
+  response_single: '{ "data": { "type": "<Resource>", "id": "<id>", "attributes": {...} } }'
+  response_collection: '{ "data": [ { ... } ] }'
+  id_format: numeric string, pattern \d{1,10}
+pagination:
+  style: json:api-page
+  params:
+  - 'page[size]'
+  - 'page[number]'
+  defaults:
+    size: 250
+    number: 1
+  max_size: 500
+  total_count: >-
+    Not provided. Iterate pages until a page returns fewer items than the page
+    size to detect the end of a collection.
+filtering:
+  style: postgrest-like
+  param: 'filter[<column>]=<op>.<value>'
+  operators:
+  - eq
+  - gte
+  - lte
+  - gt
+  - lt
+  - is
+  compound: 'and(gte.<value>,lte.<value>)'
+  example: 'filter[salesCount]=and(gte.5,lte.20)'
+idempotency:
+  supported: false
+  note: No idempotency-key header or parameter is documented; POST creates are not idempotent.
+metadata:
+  supported: false
+request_tracing:
+  request_id_header: null
+  note: No request-id/correlation header documented.
+versioning:
+  style: uri-path
+  current: v1alpha1
+  cross_ref: lifecycle/fudo-lifecycle.yml
+errors:
+  style: json:api
+  envelope: '{ "errors": [ { "status": "<code>", "title": "<text>" } ] }'
+  cross_ref: errors/fudo-problem-types.yml
+rate_limiting:
+  documented: false
+  note: No rate-limit headers or published quotas found in spec or docs.

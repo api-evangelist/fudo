@@ -1,0 +1,38 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/fudo-openapi-original.yml
+note: >-
+  Cross-cutting standards conformance derived from the Fudo OpenAPI (v1alpha1)
+  and the developer documentation. No published third-party compliance program
+  (SOC 2 / ISO 27001 / PCI DSS / HIPAA) was found on Fudo's trust/security
+  surface, so no Compliance pointer is emitted.
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: spec declares openapi 3.1.0
+- id: json:api
+  conforms: true
+  evidence: >-
+    Request/response bodies use the JSON:API resource envelope
+    {data:{type,attributes,relationships}}; errors use {errors:[{status,title}]};
+    pagination uses page[size]/page[number].
+- id: json:api-pagination
+  conforms: true
+  evidence: page[size] (default 250, max 500) + page[number] query params
+- id: bearer-token-auth
+  conforms: true
+  evidence: securityScheme bearerAuth (http bearer, JWT) applied globally
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use JSON:API error objects, not application/problem+json
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme; token obtained via apiKey/apiSecret exchange
+- id: oidc
+  conforms: false
+- id: webhooks
+  conforms: false
+  evidence: no webhook/callbacks or AsyncAPI surface documented
+- id: idempotency
+  conforms: false
+  evidence: no idempotency-key header/param documented in spec or docs

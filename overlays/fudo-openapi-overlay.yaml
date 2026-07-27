@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Fudo API
+  version: 1.0.0
+extends: openapi/fudo-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-profile: fudo
+    x-apievangelist-conventions: conventions/fudo-conventions.yml
+    x-apievangelist-authentication: authentication/fudo-authentication.yml
+    x-apievangelist-errors: errors/fudo-problem-types.yml
+    x-apievangelist-data-model: data-model/fudo-data-model.yml
+    x-api-style: json:api
+- target: $.servers[0]
+  update:
+    x-environment: production
+- target: $.components.securitySchemes.bearerAuth
+  update:
+    x-token-endpoint: https://auth.fu.do/api
+    x-token-ttl-hours: 24
+    x-credentials: apiKey + apiSecret (Pro plan or higher)

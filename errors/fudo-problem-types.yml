@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: derived
+format: json:api
+source: openapi/fudo-openapi-original.yml
+envelope: 'Errors are returned as a JSON:API error document: {"errors":[{"status":"<code>","title":"<text>"}]}'
+note: Fudo uses JSON:API error objects (status + title), not RFC 9457 application/problem+json. Success
+  responses use 200 (reads/updates) and 201 (creates).
+problems:
+- status: 401
+  title: Unauthorized
+  meaning: Missing, invalid, or expired bearer token. Obtain/renew a token at https://auth.fu.do/api.
+  schema: components.schemas.error401
+- status: 403
+  title: Forbidden
+  meaning: The user/role tied to the token lacks permission for this operation.
+  schema: components.schemas.error403
+- status: 404
+  title: Not Found
+  meaning: The requested resource (or id) does not exist.
+  schema: components.schemas.error404
+- status: 422
+  title: Unprocessable Entity
+  meaning: Request body failed validation (missing/invalid attributes).
+  schema: components.schemas.error422

@@ -1,0 +1,233 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/fudo-openapi-original.yml
+note: Fudo publishes no official MCP server. Candidate tool list derived one-per-operation from the Fudo
+  OpenAPI (v1alpha1). The spec declares no operationIds, so source_operation references the METHOD + path.
+server:
+  name: fudo
+  transport: http
+  auth: bearer (token from https://auth.fu.do/api)
+tools:
+- name: list_customers
+  description: Get customers
+  source_operation: openapi/fudo-openapi-original.yml#GET /customers
+- name: create_customers
+  description: Create customer
+  source_operation: openapi/fudo-openapi-original.yml#POST /customers
+- name: get_customers
+  description: Get customer
+  source_operation: openapi/fudo-openapi-original.yml#GET /customers/{id}
+- name: update_customers
+  description: Update customer
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /customers/{id}
+- name: delete_customers
+  description: Delete customer
+  source_operation: openapi/fudo-openapi-original.yml#DELETE /customers/{id}
+- name: list_discounts
+  description: Get discounts
+  source_operation: openapi/fudo-openapi-original.yml#GET /discounts
+- name: create_discounts
+  description: Create discount
+  source_operation: openapi/fudo-openapi-original.yml#POST /discounts
+- name: get_discounts
+  description: Get discount
+  source_operation: openapi/fudo-openapi-original.yml#GET /discounts/{id}
+- name: update_discounts
+  description: Update discount
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /discounts/{id}
+- name: list_expenses
+  description: Get expenses
+  source_operation: openapi/fudo-openapi-original.yml#GET /expenses
+- name: create_expenses
+  description: Create expense
+  source_operation: openapi/fudo-openapi-original.yml#POST /expenses
+- name: get_expenses
+  description: Get expense
+  source_operation: openapi/fudo-openapi-original.yml#GET /expenses/{id}
+- name: update_expenses
+  description: Update expense
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /expenses/{id}
+- name: list_expense_categories
+  description: Get expense categories
+  source_operation: openapi/fudo-openapi-original.yml#GET /expense-categories
+- name: create_expense_categories
+  description: Create expense category
+  source_operation: openapi/fudo-openapi-original.yml#POST /expense-categories
+- name: get_expense_categories
+  description: Get expense category
+  source_operation: openapi/fudo-openapi-original.yml#GET /expense-categories/{id}
+- name: update_expense_categories
+  description: Update expense category
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /expense-categories/{id}
+- name: delete_expense_categories
+  description: Delete expense category
+  source_operation: openapi/fudo-openapi-original.yml#DELETE /expense-categories/{id}
+- name: list_ingredients
+  description: Get ingredients
+  source_operation: openapi/fudo-openapi-original.yml#GET /ingredients
+- name: get_ingredients
+  description: Get ingredient
+  source_operation: openapi/fudo-openapi-original.yml#GET /ingredients/{id}
+- name: update_ingredients
+  description: Update ingredient
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /ingredients/{id}
+- name: list_items
+  description: Get items
+  source_operation: openapi/fudo-openapi-original.yml#GET /items
+- name: create_items
+  description: Create item
+  source_operation: openapi/fudo-openapi-original.yml#POST /items
+- name: get_items
+  description: Get item
+  source_operation: openapi/fudo-openapi-original.yml#GET /items/{id}
+- name: update_items
+  description: Update item
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /items/{id}
+- name: list_kitchens
+  description: Get kitchens
+  source_operation: openapi/fudo-openapi-original.yml#GET /kitchens
+- name: create_kitchens
+  description: Create kitchen
+  source_operation: openapi/fudo-openapi-original.yml#POST /kitchens
+- name: get_kitchens
+  description: Get kitchen
+  source_operation: openapi/fudo-openapi-original.yml#GET /kitchens/{id}
+- name: update_kitchens
+  description: Update kitchen
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /kitchens/{id}
+- name: delete_kitchens
+  description: Delete kitchen
+  source_operation: openapi/fudo-openapi-original.yml#DELETE /kitchens/{id}
+- name: list_payment_methods
+  description: Get payment methods
+  source_operation: openapi/fudo-openapi-original.yml#GET /payment-methods
+- name: get_payment_methods
+  description: Get payment method
+  source_operation: openapi/fudo-openapi-original.yml#GET /payment-methods/{id}
+- name: list_payments
+  description: Get payments
+  source_operation: openapi/fudo-openapi-original.yml#GET /payments
+- name: create_payments
+  description: Create payments
+  source_operation: openapi/fudo-openapi-original.yml#POST /payments
+- name: get_payments
+  description: Get payment
+  source_operation: openapi/fudo-openapi-original.yml#GET /payments/{id}
+- name: update_payments
+  description: Update payment
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /payments/{id}
+- name: list_product_categories
+  description: Get product categories
+  source_operation: openapi/fudo-openapi-original.yml#GET /product-categories
+- name: create_product_categories
+  description: Create product category
+  source_operation: openapi/fudo-openapi-original.yml#POST /product-categories
+- name: get_product_categories
+  description: Get product category
+  source_operation: openapi/fudo-openapi-original.yml#GET /product-categories/{id}
+- name: update_product_categories
+  description: Update product category
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /product-categories/{id}
+- name: list_product_modifiers
+  description: Get product modifiers
+  source_operation: openapi/fudo-openapi-original.yml#GET /product-modifiers
+- name: create_product_modifiers
+  description: Create product modifier
+  source_operation: openapi/fudo-openapi-original.yml#POST /product-modifiers
+- name: get_product_modifiers
+  description: Get product modifier
+  source_operation: openapi/fudo-openapi-original.yml#GET /product-modifiers/{id}
+- name: update_product_modifiers
+  description: Update product modifier
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /product-modifiers/{id}
+- name: list_products
+  description: Get products
+  source_operation: openapi/fudo-openapi-original.yml#GET /products
+- name: create_products
+  description: Create product
+  source_operation: openapi/fudo-openapi-original.yml#POST /products
+- name: get_products
+  description: Get product
+  source_operation: openapi/fudo-openapi-original.yml#GET /products/{id}
+- name: update_products
+  description: Update product
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /products/{id}
+- name: list_providers
+  description: Get providers
+  source_operation: openapi/fudo-openapi-original.yml#GET /providers
+- name: create_providers
+  description: Create provider
+  source_operation: openapi/fudo-openapi-original.yml#POST /providers
+- name: get_providers
+  description: Get provider
+  source_operation: openapi/fudo-openapi-original.yml#GET /providers/{id}
+- name: update_providers
+  description: Update provider
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /providers/{id}
+- name: delete_providers
+  description: Delete provider
+  source_operation: openapi/fudo-openapi-original.yml#DELETE /providers/{id}
+- name: list_roles
+  description: Get roles
+  source_operation: openapi/fudo-openapi-original.yml#GET /roles
+- name: create_roles
+  description: Create role
+  source_operation: openapi/fudo-openapi-original.yml#POST /roles
+- name: get_roles
+  description: Get role
+  source_operation: openapi/fudo-openapi-original.yml#GET /roles/{id}
+- name: update_roles
+  description: Update role
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /roles/{id}
+- name: list_rooms
+  description: Get rooms
+  source_operation: openapi/fudo-openapi-original.yml#GET /rooms
+- name: create_rooms
+  description: Create room
+  source_operation: openapi/fudo-openapi-original.yml#POST /rooms
+- name: get_rooms
+  description: Get room
+  source_operation: openapi/fudo-openapi-original.yml#GET /rooms/{id}
+- name: update_rooms
+  description: Update room
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /rooms/{id}
+- name: list_sales
+  description: Get sales
+  source_operation: openapi/fudo-openapi-original.yml#GET /sales
+- name: create_sales
+  description: Create sale
+  source_operation: openapi/fudo-openapi-original.yml#POST /sales
+- name: get_sales
+  description: Get sale
+  source_operation: openapi/fudo-openapi-original.yml#GET /sales/{id}
+- name: update_sales
+  description: Update sale
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /sales/{id}
+- name: create_subitems
+  description: Create subitem
+  source_operation: openapi/fudo-openapi-original.yml#POST /subitems
+- name: list_tables
+  description: Get tables
+  source_operation: openapi/fudo-openapi-original.yml#GET /tables
+- name: create_tables
+  description: Create table
+  source_operation: openapi/fudo-openapi-original.yml#POST /tables
+- name: get_tables
+  description: Get table
+  source_operation: openapi/fudo-openapi-original.yml#GET /tables/{id}
+- name: update_tables
+  description: Update table
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /tables/{id}
+- name: list_users
+  description: Get users
+  source_operation: openapi/fudo-openapi-original.yml#GET /users
+- name: create_users
+  description: Create user
+  source_operation: openapi/fudo-openapi-original.yml#POST /users
+- name: get_users
+  description: Get user
+  source_operation: openapi/fudo-openapi-original.yml#GET /users/{id}
+- name: update_users
+  description: Update user
+  source_operation: openapi/fudo-openapi-original.yml#PATCH /users/{id}

@@ -1,22 +1,328 @@
 aid: fudo
 name: Fudo
-description: Fudo is a company surfaced as a portfolio company of a16z and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Fudo is a cloud-based point-of-sale and restaurant management platform used by
+  more than 25,000 restaurants, bars, and cafes across Latin America. The product
+  covers on-premise and online sales, QR menus, kitchen display, inventory and
+  purchasing, expenses, table and room management, staff roles, and delivery-app
+  integrations (Uber Eats, Rappi, PedidosYa). Fudo publishes a general-purpose
+  public REST API (OpenAPI 3.1, JSON:API style) that lets Pro-plan accounts read
+  and write sales, payments, products, customers, expenses, ingredients, and
+  system configuration for reporting, BI, ERP, and custom integrations. This
+  profile was surfaced as an a16z portfolio company and enriched by the API
+  Evangelist pipeline from Fudo's own developer surface.
 url: https://raw.githubusercontent.com/api-evangelist/fudo/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - a16z
-x-tier: stub
+x-tier: profiled
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
+image: https://dev.fu.do/assets/images/fudo.svg
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Restaurant
+- Point of Sale
+- Hospitality
+- Food and Beverage
+- Payments
+- Inventory
+- Latin America
+- SaaS
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: fudo:fudo-customers-api
+  name: Fudo Customers API
+  description: The Customers API from Fudo — 2 operation(s) for customers.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-customers-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-discounts-api
+  name: Fudo Discounts API
+  description: The Discounts API from Fudo — 2 operation(s) for discounts.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Discounts
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-discounts-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-expense-categories-api
+  name: Fudo Expense Categories API
+  description: The Expense Categories API from Fudo — 2 operation(s) for expense categories.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Expense Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-expense-categories-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-expenses-api
+  name: Fudo Expenses API
+  description: The Expenses API from Fudo — 2 operation(s) for expenses.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Expenses
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-expenses-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-ingredients-api
+  name: Fudo Ingredients API
+  description: The Ingredients API from Fudo — 2 operation(s) for ingredients.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Ingredients
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-ingredients-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-items-api
+  name: Fudo Items API
+  description: The Items API from Fudo — 2 operation(s) for items.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Items
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-items-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-kitchens-api
+  name: Fudo Kitchens API
+  description: The Kitchens API from Fudo — 2 operation(s) for kitchens.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Kitchens
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-kitchens-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-payment-methods-api
+  name: Fudo Payment Methods API
+  description: The Payment Methods API from Fudo — 2 operation(s) for payment methods.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Payment Methods
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-payment-methods-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-payments-api
+  name: Fudo Payments API
+  description: The Payments API from Fudo — 2 operation(s) for payments.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-payments-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-product-categories-api
+  name: Fudo Product Categories API
+  description: The Product Categories API from Fudo — 2 operation(s) for product categories.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Product Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-product-categories-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-product-modifiers-api
+  name: Fudo Product Modifiers API
+  description: The Product Modifiers API from Fudo — 2 operation(s) for product modifiers.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Product Modifiers
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-product-modifiers-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-products-api
+  name: Fudo Products API
+  description: The Products API from Fudo — 2 operation(s) for products.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-products-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-providers-api
+  name: Fudo Providers API
+  description: The Providers API from Fudo — 2 operation(s) for providers.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-providers-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-roles-api
+  name: Fudo Roles API
+  description: The Roles API from Fudo — 2 operation(s) for roles.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-roles-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-rooms-api
+  name: Fudo Rooms API
+  description: The Rooms API from Fudo — 2 operation(s) for rooms.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Rooms
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-rooms-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-sales-api
+  name: Fudo Sales API
+  description: The Sales API from Fudo — 2 operation(s) for sales.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Sales
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-sales-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-subitems-api
+  name: Fudo Subitems API
+  description: The Subitems API from Fudo — 1 operation(s) for subitems.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Subitems
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-subitems-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-tables-api
+  name: Fudo Tables API
+  description: The Tables API from Fudo — 2 operation(s) for tables.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-tables-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+- aid: fudo:fudo-users-api
+  name: Fudo Users API
+  description: The Users API from Fudo — 2 operation(s) for users.
+  humanURL: https://dev.fu.do/api/
+  baseURL: https://api.fu.do/v1alpha1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/fudo-users-api-openapi.yml
+  - type: APIReference
+    url: https://dev.fu.do/api/
+common:
+- type: DomainSecurity
+  url: security/fudo-domain-security.yml
+- type: Authentication
+  url: authentication/fudo-authentication.yml
+- type: MCPServer
+  url: mcp/fudo-mcp.yml
+- type: LLMsTxt
+  url: llms/fudo-llms.txt
+- type: Overlay
+  url: overlays/fudo-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/fudo-conformance.yml
+- type: ErrorCatalog
+  url: errors/fudo-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/fudo-lifecycle.yml
+- type: Conventions
+  url: conventions/fudo-conventions.yml
+- type: DataModel
+  url: data-model/fudo-data-model.yml
+- type: DeveloperPortal
+  url: https://dev.fu.do/api/
+- type: Documentation
+  url: https://dev.fu.do/api/
+- type: APIReference
+  url: https://dev.fu.do/api/
+- type: Support
+  url: https://soporte.fu.do
+- type: Blog
+  url: https://blog.fu.do/
+- type: Pricing
+  url: https://fu.do/es/precios/
+- type: SignUp
+  url: https://fu.do/es/crear-cuenta/
+- type: Login
+  url: https://app-v2.fu.do/
+- type: TermsOfService
+  url: https://fu.do/condiciones-de-servicio/
+- type: PrivacyPolicy
+  url: https://fu.do/es/politicas-de-privacidad/
+- type: Website
+  url: https://fu.do
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
