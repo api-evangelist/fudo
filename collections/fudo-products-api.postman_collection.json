@@ -1,0 +1,746 @@
+{
+  "item": [
+    {
+      "id": "2235a9b9-f269-45d3-b00e-dda69c9b9987",
+      "name": "Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51fda2f3-6667-475d-bfcf-5ec094976c4d",
+          "name": "Get products",
+          "request": {
+            "name": "Get products",
+            "description": {},
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "productCategoryId",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "stock",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "stockControl",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "invoiceInformation",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "productProportion",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "proportion",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fa0e6aa-0036-44e1-9373-6dc45997f8c0",
+              "name": "A list of resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "in.(1,3,2345)"
+                    },
+                    {
+                      "key": "name",
+                      "value": "ilike.%stew%"
+                    },
+                    {
+                      "key": "productCategoryId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stock",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stockControl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "eq.true"
+                    },
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "productCategory"
+                    },
+                    {
+                      "key": "invoiceInformation",
+                      "value": "ncm"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "productProportion",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "proportion",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"Product\",\n      \"attributes\": {\n        \"active\": false,\n        \"code\": \"SW500\",\n        \"cost\": 250.5,\n        \"description\": \"Still Water 500cm3\",\n        \"enableOnlineMenu\": false,\n        \"enableQrMenu\": false,\n        \"favourite\": false,\n        \"ignoreAvailability\": false,\n        \"imageUrl\": \"https://example.com/image.png\",\n        \"minStock\": 50,\n        \"name\": \"Still Water\",\n        \"position\": 50,\n        \"preparationTime\": 6624.509022048659,\n        \"price\": 250.5,\n        \"sellAlone\": false,\n        \"stock\": 50,\n        \"stockControl\": false\n      },\n      \"relationships\": {\n        \"kitchen\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Kitchen\"\n          }\n        },\n        \"productCategory\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductCategory\"\n          }\n        },\n        \"productModifiersGroups\": [\n          {\n            \"data\": {\n              \"id\": \"1\",\n              \"type\": \"ProductModifiersGroup\"\n            }\n          },\n          {\n            \"data\": {\n              \"id\": \"1\",\n              \"type\": \"ProductModifiersGroup\"\n            }\n          }\n        ],\n        \"productProportions\": [\n          {\n            \"data\": {\n              \"id\": \"1\",\n              \"type\": \"ProductProportion\"\n            }\n          },\n          {\n            \"data\": {\n              \"id\": \"1\",\n              \"type\": \"ProductProportion\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"1\",\n      \"type\": \"Product\",\n      \"attributes\": {\n        \"active\": false,\n        \"code\": \"SW500\",\n        \"cost\": 250.5,\n        \"description\": \"Still Water 500cm3\",\n        \"enableOnlineMenu\": false,\n        \"enableQrMenu\": false,\n        \"favourite\": false,\n        \"ignoreAvailability\": false,\n        \"imageUrl\": \"https://example.com/image.png\",\n        \"minStock\": 50,\n        \"name\": \"Still Water\",\n        \"position\": 50,\n        \"preparationTime\": 5065.473776278849,\n        \"price\": 250.5,\n        \"sellAlone\": false,\n        \"stock\": 50,\n        \"stockControl\": false\n      },\n      \"relationships\": {\n        \"kitchen\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Kitchen\"\n          }\n        },\n        \"productCategory\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductCategory\"\n          }\n        },\n        \"productModifiersGroups\": [\n          {\n            \"data\": {\n              \"id\": \"1\",\n              \"type\": \"ProductModifiersGroup\"\n            }\n          },\n          {\n            \"data\": {\n              \"id\": \"1\",\n              \"type\": \"ProductModifiersGroup\"\n            }\n          }\n        ],\n        \"productProportions\": [\n          {\n            \"data\": {\n              \"id\": \"1\",\n              \"type\": \"ProductProportion\"\n            }\n          },\n          {\n            \"data\": {\n              \"id\": \"1\",\n              \"type\": \"ProductProportion\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d86f587-f2d4-4c77-83f8-a0b0007ee6f2",
+          "name": "Create product",
+          "request": {
+            "name": "Create product",
+            "description": {},
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"description\": \"<string>\",\n      \"minStock\": \"<number>\",\n      \"stock\": \"<number>\",\n      \"stockControl\": \"<boolean>\"\n    },\n    \"relationships\": {\n      \"productCategory\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9c21d0b-004d-42cb-87b5-9364895e0a14",
+              "name": "The created resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"Product\",\n    \"attributes\": {\n      \"name\": \"Still Water\",\n      \"price\": 250.5,\n      \"code\": \"SW500\",\n      \"cost\": 250.5,\n      \"description\": \"Still Water 500cm3\",\n      \"minStock\": 50,\n      \"stock\": 50,\n      \"stockControl\": true\n    },\n    \"relationships\": {\n      \"productCategory\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ProductCategory\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Product\",\n    \"attributes\": {\n      \"active\": false,\n      \"code\": \"SW500\",\n      \"cost\": 250.5,\n      \"description\": \"Still Water 500cm3\",\n      \"enableOnlineMenu\": false,\n      \"enableQrMenu\": false,\n      \"favourite\": false,\n      \"ignoreAvailability\": false,\n      \"imageUrl\": \"https://example.com/image.png\",\n      \"minStock\": 50,\n      \"name\": \"Still Water\",\n      \"position\": 50,\n      \"preparationTime\": 8911.836969406844,\n      \"price\": 250.5,\n      \"sellAlone\": false,\n      \"stock\": 50,\n      \"stockControl\": false\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Kitchen\"\n        }\n      },\n      \"productCategory\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ProductCategory\"\n        }\n      },\n      \"productModifiersGroups\": [\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductModifiersGroup\"\n          }\n        },\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductModifiersGroup\"\n          }\n        }\n      ],\n      \"productProportions\": [\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductProportion\"\n          }\n        },\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductProportion\"\n          }\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c578397-98a8-4026-9f66-59bbcf435fb8",
+          "name": "Get product",
+          "request": {
+            "name": "Get product",
+            "description": {},
+            "url": {
+              "path": [
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "invoiceInformation",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "productProportion",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "proportion",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1cfefbcd-ccfa-4a0c-ac13-d367b15af681",
+              "name": "A single resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "productCategory"
+                    },
+                    {
+                      "key": "invoiceInformation",
+                      "value": "ncm"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "productProportion",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "proportion",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Product\",\n    \"attributes\": {\n      \"active\": false,\n      \"code\": \"SW500\",\n      \"cost\": 250.5,\n      \"description\": \"Still Water 500cm3\",\n      \"enableOnlineMenu\": false,\n      \"enableQrMenu\": false,\n      \"favourite\": false,\n      \"ignoreAvailability\": false,\n      \"imageUrl\": \"https://example.com/image.png\",\n      \"minStock\": 50,\n      \"name\": \"Still Water\",\n      \"position\": 50,\n      \"preparationTime\": 8911.836969406844,\n      \"price\": 250.5,\n      \"sellAlone\": false,\n      \"stock\": 50,\n      \"stockControl\": false\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Kitchen\"\n        }\n      },\n      \"productCategory\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ProductCategory\"\n        }\n      },\n      \"productModifiersGroups\": [\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductModifiersGroup\"\n          }\n        },\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductModifiersGroup\"\n          }\n        }\n      ],\n      \"productProportions\": [\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductProportion\"\n          }\n        },\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductProportion\"\n          }\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb4de2f5-75af-4955-8a6b-c3ee820ad50b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "productCategory"
+                    },
+                    {
+                      "key": "invoiceInformation",
+                      "value": "ncm"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "productProportion",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "proportion",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33230802-6069-4703-9348-7782be978cae",
+          "name": "Update product",
+          "request": {
+            "name": "Update product",
+            "description": {},
+            "url": {
+              "path": [
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"description\": \"<string>\",\n      \"minStock\": \"<number>\",\n      \"name\": \"<string>\",\n      \"price\": \"<number>\",\n      \"stock\": \"<number>\",\n      \"stockControl\": \"<boolean>\"\n    },\n    \"relationships\": {\n      \"productCategory\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"productModifiersGroup\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3882121e-4cec-4e8f-b8d3-7f452139514d",
+              "name": "The updated resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Product\",\n    \"attributes\": {\n      \"active\": true,\n      \"code\": \"SW500\",\n      \"cost\": 250.5,\n      \"description\": \"Still Water 500cm3\",\n      \"minStock\": 50,\n      \"name\": \"Still Water\",\n      \"price\": 250.5,\n      \"stock\": 50,\n      \"stockControl\": true\n    },\n    \"relationships\": {\n      \"productCategory\": {\n        \"data\": {\n          \"id\": \"35\",\n          \"type\": \"ProductCategory\"\n        }\n      },\n      \"productModifiersGroup\": {\n        \"data\": {\n          \"id\": \"35\",\n          \"type\": \"ProductModifiersGroup\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Product\",\n    \"attributes\": {\n      \"active\": false,\n      \"code\": \"SW500\",\n      \"cost\": 250.5,\n      \"description\": \"Still Water 500cm3\",\n      \"enableOnlineMenu\": false,\n      \"enableQrMenu\": false,\n      \"favourite\": false,\n      \"ignoreAvailability\": false,\n      \"imageUrl\": \"https://example.com/image.png\",\n      \"minStock\": 50,\n      \"name\": \"Still Water\",\n      \"position\": 50,\n      \"preparationTime\": 8911.836969406844,\n      \"price\": 250.5,\n      \"sellAlone\": false,\n      \"stock\": 50,\n      \"stockControl\": false\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Kitchen\"\n        }\n      },\n      \"productCategory\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ProductCategory\"\n        }\n      },\n      \"productModifiersGroups\": [\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductModifiersGroup\"\n          }\n        },\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductModifiersGroup\"\n          }\n        }\n      ],\n      \"productProportions\": [\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductProportion\"\n          }\n        },\n        {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductProportion\"\n          }\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3368be51-7787-4cce-aa81-73b4f9e63a90",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Product\",\n    \"attributes\": {\n      \"active\": true,\n      \"code\": \"SW500\",\n      \"cost\": 250.5,\n      \"description\": \"Still Water 500cm3\",\n      \"minStock\": 50,\n      \"name\": \"Still Water\",\n      \"price\": 250.5,\n      \"stock\": 50,\n      \"stockControl\": true\n    },\n    \"relationships\": {\n      \"productCategory\": {\n        \"data\": {\n          \"id\": \"35\",\n          \"type\": \"ProductCategory\"\n        }\n      },\n      \"productModifiersGroup\": {\n        \"data\": {\n          \"id\": \"35\",\n          \"type\": \"ProductModifiersGroup\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fu.do/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "14ad9662-6071-4b72-af76-92fbbf23a05d",
+    "name": "Fudo Customers Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "9b0a6c58-6372-4a8d-a204-fc810f5f54c2",
+      "name": "Subitems",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31fd7c7f-04dc-441f-bb13-5718bec2cf25",
+          "name": "Create subitem",
+          "request": {
+            "name": "Create subitem",
+            "description": {},
+            "url": {
+              "path": [
+                "subitems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"quantity\": \"<number>\",\n      \"comment\": \"<string>\",\n      \"price\": \"<number>\"\n    },\n    \"relationships\": {\n      \"product\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"item\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"productModifiersGroup\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef166748-b86e-4abf-9561-3e91e7e3f6f2",
+              "name": "The created resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subitems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"Subitem\",\n    \"attributes\": {\n      \"quantity\": 3,\n      \"comment\": \"This is a comment\",\n      \"price\": 100\n    },\n    \"relationships\": {\n      \"product\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Product\"\n        }\n      },\n      \"item\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Item\"\n        }\n      },\n      \"productModifiersGroup\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ProductModifiersGroup\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Subitem\",\n    \"attributes\": {\n      \"comment\": \"This is a comment\",\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"price\": 100,\n      \"quantity\": 3,\n      \"status\": \"IN-COURSE\"\n    },\n    \"relationships\": {\n      \"product\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Product\"\n        }\n      },\n      \"item\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Item\"\n        }\n      },\n      \"productModifiersGroup\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ProductModifiersGroup\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fu.do/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7766d24a-77a7-48d3-8698-1c80883eb851",
+    "name": "Fudo Customers Subitems API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

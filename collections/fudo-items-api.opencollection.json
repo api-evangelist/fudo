@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fudo Customers Items API",
+    "version": "v1alpha1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fu.do/v1alpha1/items",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number and size."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              }
+            ]
+          },
+          "docs": "Get items"
+        },
+        {
+          "info": {
+            "name": "Create item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fu.do/v1alpha1/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create item"
+        },
+        {
+          "info": {
+            "name": "Get item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fu.do/v1alpha1/items/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              }
+            ]
+          },
+          "docs": "Get item"
+        },
+        {
+          "info": {
+            "name": "Update item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.fu.do/v1alpha1/items/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update item"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

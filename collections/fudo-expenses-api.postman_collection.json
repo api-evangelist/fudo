@@ -1,0 +1,1032 @@
+{
+  "item": [
+    {
+      "id": "8ea3b456-c0ef-4d0d-82d8-5f76745472a6",
+      "name": "Expenses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3aee09dd-eedf-45e9-b347-8afb7b7c1d88",
+          "name": "Get expenses",
+          "request": {
+            "name": "Get expenses",
+            "description": {},
+            "url": {
+              "path": [
+                "expenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expense",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "cashRegister",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "expenseCategory",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "paymentMethod",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "provider",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "receiptType",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "recurringExpense",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "ingredient",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "expenseItem",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "payment",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "commercialDocument",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "cashRegisterId",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "canceled",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdAt",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdById",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "dueDate",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "expenseCategoryId",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "paymentMethodId",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "providerId",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "receiptTypeId",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "expenseCategories",
+                  "value": "{\"financialCategory\":\"<string>\"}",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "payments",
+                  "value": "{\"paymentMethodId\":\"<string>\",\"cashRegisterId\":\"<string>\",\"canceled\":\"<string>\",\"createdAt\":\"<string>\"}",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4377cd61-f9e3-480b-8970-15bc08d0d331",
+              "name": "A list of resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "expenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expense",
+                      "value": "amount"
+                    },
+                    {
+                      "key": "cashRegister",
+                      "value": "name"
+                    },
+                    {
+                      "key": "expenseCategory",
+                      "value": "name"
+                    },
+                    {
+                      "key": "paymentMethod",
+                      "value": "name"
+                    },
+                    {
+                      "key": "provider",
+                      "value": "name"
+                    },
+                    {
+                      "key": "receiptType",
+                      "value": "name"
+                    },
+                    {
+                      "key": "product",
+                      "value": "name"
+                    },
+                    {
+                      "key": "recurringExpense",
+                      "value": "rrule"
+                    },
+                    {
+                      "key": "ingredient",
+                      "value": "name"
+                    },
+                    {
+                      "key": "expenseItem",
+                      "value": "price"
+                    },
+                    {
+                      "key": "payment",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "name"
+                    },
+                    {
+                      "key": "commercialDocument",
+                      "value": "taxes"
+                    },
+                    {
+                      "key": "cashRegisterId",
+                      "value": "eq.1"
+                    },
+                    {
+                      "key": "canceled",
+                      "value": "neq.true"
+                    },
+                    {
+                      "key": "createdAt",
+                      "value": "and.(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)"
+                    },
+                    {
+                      "key": "createdById",
+                      "value": "eq.1"
+                    },
+                    {
+                      "key": "date",
+                      "value": "and.(gte.2020-05-11,lte.2020-05-11)"
+                    },
+                    {
+                      "key": "dueDate",
+                      "value": "and.(gte.2020-05-11,lte.2020-05-11)"
+                    },
+                    {
+                      "key": "expenseCategoryId",
+                      "value": "in.(1,3,2345)"
+                    },
+                    {
+                      "key": "paymentMethodId",
+                      "value": "eq.1"
+                    },
+                    {
+                      "key": "providerId",
+                      "value": "eq.1"
+                    },
+                    {
+                      "key": "receiptTypeId",
+                      "value": "eq.1"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expenseCategories",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "payments",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "provider,expenseCategory"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"Expense\",\n      \"relationships\": {\n        \"recurringExpense\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"RecurringExpense\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"1\",\n      \"type\": \"Expense\",\n      \"relationships\": {\n        \"recurringExpense\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"RecurringExpense\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2ec0d8c-cfd8-46f1-a9b8-28dea6147622",
+          "name": "Create expense",
+          "request": {
+            "name": "Create expense",
+            "description": {},
+            "url": {
+              "path": [
+                "expenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"amount\": \"<number>\",\n      \"date\": \"<date>\",\n      \"useInCashCount\": \"<boolean>\",\n      \"receiptNumber\": \"<string,null>\",\n      \"description\": \"<string>\",\n      \"paymentDate\": \"<string,null-date>\",\n      \"dueDate\": \"<date>\"\n    },\n    \"relationships\": {\n      \"expenseCategory\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"commercialDocument\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"lid\": \"<string>\"\n        }\n      },\n      \"provider\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"cashRegister\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"receiptType\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56b25fa9-1880-4173-8f9c-3be80a5741f0",
+              "name": "The created resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "expenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"Expense\",\n    \"attributes\": {\n      \"amount\": 100.55,\n      \"date\": \"2023-11-10\",\n      \"useInCashCount\": true,\n      \"receiptNumber\": \"123\",\n      \"description\": \"This is a comment\",\n      \"paymentDate\": \"<string,null-date>\",\n      \"dueDate\": \"<date>\"\n    },\n    \"relationships\": {\n      \"expenseCategory\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ExpenseCategory\"\n        }\n      },\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      },\n      \"commercialDocument\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CommercialDocument\",\n          \"lid\": \"1\"\n        }\n      },\n      \"provider\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Provider\"\n        }\n      },\n      \"cashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"receiptType\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ReceiptType\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Expense\",\n    \"relationships\": {\n      \"recurringExpense\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"RecurringExpense\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8facbc78-537a-42bd-89db-a0dadff24af3",
+          "name": "Get expense",
+          "request": {
+            "name": "Get expense",
+            "description": {},
+            "url": {
+              "path": [
+                "expenses",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expense",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "cashRegister",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "expenseCategory",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "paymentMethod",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "provider",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "receiptType",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "recurringExpense",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "ingredient",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "expenseItem",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "payment",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "commercialDocument",
+                  "value": "<string>",
+                  "description": "Object in the form of fields[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb411c2b-c2fe-4ce1-b974-a178f0d288db",
+              "name": "A single resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "expenses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expense",
+                      "value": "amount"
+                    },
+                    {
+                      "key": "cashRegister",
+                      "value": "name"
+                    },
+                    {
+                      "key": "expenseCategory",
+                      "value": "name"
+                    },
+                    {
+                      "key": "paymentMethod",
+                      "value": "name"
+                    },
+                    {
+                      "key": "provider",
+                      "value": "name"
+                    },
+                    {
+                      "key": "receiptType",
+                      "value": "name"
+                    },
+                    {
+                      "key": "product",
+                      "value": "name"
+                    },
+                    {
+                      "key": "recurringExpense",
+                      "value": "rrule"
+                    },
+                    {
+                      "key": "ingredient",
+                      "value": "name"
+                    },
+                    {
+                      "key": "expenseItem",
+                      "value": "price"
+                    },
+                    {
+                      "key": "payment",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "name"
+                    },
+                    {
+                      "key": "commercialDocument",
+                      "value": "taxes"
+                    },
+                    {
+                      "key": "include",
+                      "value": "provider,expenseCategory"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Expense\",\n    \"relationships\": {\n      \"recurringExpense\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"RecurringExpense\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9b1b87a-9af7-464c-8ae1-98ac56d76ab4",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "expenses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expense",
+                      "value": "amount"
+                    },
+                    {
+                      "key": "cashRegister",
+                      "value": "name"
+                    },
+                    {
+                      "key": "expenseCategory",
+                      "value": "name"
+                    },
+                    {
+                      "key": "paymentMethod",
+                      "value": "name"
+                    },
+                    {
+                      "key": "provider",
+                      "value": "name"
+                    },
+                    {
+                      "key": "receiptType",
+                      "value": "name"
+                    },
+                    {
+                      "key": "product",
+                      "value": "name"
+                    },
+                    {
+                      "key": "recurringExpense",
+                      "value": "rrule"
+                    },
+                    {
+                      "key": "ingredient",
+                      "value": "name"
+                    },
+                    {
+                      "key": "expenseItem",
+                      "value": "price"
+                    },
+                    {
+                      "key": "payment",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "name"
+                    },
+                    {
+                      "key": "commercialDocument",
+                      "value": "taxes"
+                    },
+                    {
+                      "key": "include",
+                      "value": "provider,expenseCategory"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb851ffe-7363-4be2-9ed3-2968b8b4e243",
+          "name": "Update expense",
+          "request": {
+            "name": "Update expense",
+            "description": {},
+            "url": {
+              "path": [
+                "expenses",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "421be193-b597-42f6-ae5d-9024d6ae3647",
+              "name": "The updated resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "expenses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Expense\",\n    \"relationships\": {\n      \"recurringExpense\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"RecurringExpense\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec77a7f4-1b57-452b-85aa-140bc3a2ff27",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "expenses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fu.do/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "03763c20-397c-4461-8cde-6a789cf9bc3a",
+    "name": "Fudo Customers Expenses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

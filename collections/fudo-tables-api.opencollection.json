@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fudo Customers Tables API",
+    "version": "v1alpha1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fu.do/v1alpha1/tables",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number and size."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              }
+            ]
+          },
+          "docs": "Get tables"
+        },
+        {
+          "info": {
+            "name": "Create table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fu.do/v1alpha1/tables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create table"
+        },
+        {
+          "info": {
+            "name": "Get table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fu.do/v1alpha1/tables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              }
+            ]
+          },
+          "docs": "Get table"
+        },
+        {
+          "info": {
+            "name": "Update table",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.fu.do/v1alpha1/tables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update table"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

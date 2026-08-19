@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fudo Customers Products API",
+    "version": "v1alpha1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fu.do/v1alpha1/products",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Object in the form of filter[column]=value."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number and size."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Object in the form of fields[column]=value."
+              }
+            ]
+          },
+          "docs": "Get products"
+        },
+        {
+          "info": {
+            "name": "Create product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fu.do/v1alpha1/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create product"
+        },
+        {
+          "info": {
+            "name": "Get product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fu.do/v1alpha1/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Object in the form of fields[column]=value."
+              }
+            ]
+          },
+          "docs": "Get product"
+        },
+        {
+          "info": {
+            "name": "Update product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.fu.do/v1alpha1/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update product"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

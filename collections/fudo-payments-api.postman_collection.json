@@ -1,0 +1,728 @@
+{
+  "item": [
+    {
+      "id": "ea446d68-0395-4518-95c5-e4a81e2a6920",
+      "name": "Payments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13cfa67b-c87b-4d0f-a889-5a11ba31f769",
+          "name": "Get payments",
+          "request": {
+            "name": "Get payments",
+            "description": {},
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "payment",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "paymentMethod",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "canceled",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdAt",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "paidAt",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "receivedBy",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "expenseId",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "financialAccount",
+                  "value": "{\"id\":\"<string>\"}",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "paymentMethod",
+                  "value": "{\"id\":\"<string>\",\"kind\":\"<string>\",\"processor\":\"<string>\"}",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "sales",
+                  "value": "{\"createdAt\":\"<string>\",\"saleState\":\"<string>\"}",
+                  "description": "Object in the form of filter[column]=value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68432714-fb5c-4314-bbd2-15a266b35d12",
+              "name": "A list of resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payment",
+                      "value": "amount,createdAt"
+                    },
+                    {
+                      "key": "paymentMethod",
+                      "value": "name,processor"
+                    },
+                    {
+                      "key": "include",
+                      "value": "paymentMethod"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "gte.0"
+                    },
+                    {
+                      "key": "canceled",
+                      "value": "neq.true"
+                    },
+                    {
+                      "key": "createdAt",
+                      "value": "and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)"
+                    },
+                    {
+                      "key": "paidAt",
+                      "value": "and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)"
+                    },
+                    {
+                      "key": "receivedBy",
+                      "value": "is.null"
+                    },
+                    {
+                      "key": "expenseId",
+                      "value": "is.null"
+                    },
+                    {
+                      "key": "financialAccount",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "paymentMethod",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "sales",
+                      "value": "[object Object]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"Payment\",\n      \"attributes\": {\n        \"amount\": 150,\n        \"canceled\": false,\n        \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n        \"external_reference\": \"abcdef\"\n      },\n      \"relationships\": {\n        \"paymentMethod\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"PaymentMethod\"\n          }\n        },\n        \"sale\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Sale\"\n          }\n        },\n        \"expense\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Expense\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"1\",\n      \"type\": \"Payment\",\n      \"attributes\": {\n        \"amount\": 150,\n        \"canceled\": false,\n        \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n        \"external_reference\": \"abcdef\"\n      },\n      \"relationships\": {\n        \"paymentMethod\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"PaymentMethod\"\n          }\n        },\n        \"sale\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Sale\"\n          }\n        },\n        \"expense\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Expense\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf822cf4-8af7-43ca-8c48-8313039c4240",
+          "name": "Create payments",
+          "request": {
+            "name": "Create payments",
+            "description": {},
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"amount\": \"<number>\",\n      \"extraData\": {\n        \"installments\": \"<integer>\",\n        \"cardIssuer\": \"<string>\",\n        \"cardType\": \"<string>\",\n        \"entryType\": \"<string>\",\n        \"paymentProvider\": \"<string>\",\n        \"paymentType\": \"<string>\",\n        \"deviceOs\": \"<string>\",\n        \"deviceSerialNumber\": \"<string>\",\n        \"externalReference\": \"<string>\",\n        \"totalAmount\": \"<number>\",\n        \"financialAmount\": \"<number>\"\n      }\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"sale\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "087fcb6e-81ef-44b1-a91b-b2f41f0ddca3",
+              "name": "The created resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"Payment\",\n    \"attributes\": {\n      \"amount\": 100.5,\n      \"extraData\": {\n        \"installments\": \"<integer>\",\n        \"cardIssuer\": \"<string>\",\n        \"cardType\": \"<string>\",\n        \"entryType\": \"<string>\",\n        \"paymentProvider\": \"<string>\",\n        \"paymentType\": \"<string>\",\n        \"deviceOs\": \"<string>\",\n        \"deviceSerialNumber\": \"<string>\",\n        \"externalReference\": \"<string>\",\n        \"totalAmount\": 100,\n        \"financialAmount\": 100\n      }\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      },\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Payment\",\n    \"attributes\": {\n      \"amount\": 150,\n      \"canceled\": false,\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"external_reference\": \"abcdef\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      },\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      },\n      \"expense\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Expense\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26fe20f1-c4f1-446c-9d49-3b815b95629c",
+          "name": "Get payment",
+          "request": {
+            "name": "Get payment",
+            "description": {},
+            "url": {
+              "path": [
+                "payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "payment",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "paymentMethod",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d825f6eb-9d2e-4888-9ad1-0c37aba39f53",
+              "name": "A single resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payment",
+                      "value": "amount,createdAt"
+                    },
+                    {
+                      "key": "paymentMethod",
+                      "value": "name,processor"
+                    },
+                    {
+                      "key": "include",
+                      "value": "paymentMethod"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Payment\",\n    \"attributes\": {\n      \"amount\": 150,\n      \"canceled\": false,\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"external_reference\": \"abcdef\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      },\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      },\n      \"expense\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Expense\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62366b06-801a-46ba-809f-ed5c1be9ec7f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payment",
+                      "value": "amount,createdAt"
+                    },
+                    {
+                      "key": "paymentMethod",
+                      "value": "name,processor"
+                    },
+                    {
+                      "key": "include",
+                      "value": "paymentMethod"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "274edac5-d4ba-4998-8993-1c7b4ef5df57",
+          "name": "Update payment",
+          "request": {
+            "name": "Update payment",
+            "description": {},
+            "url": {
+              "path": [
+                "payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"amount\": \"<number>\",\n      \"canceled\": \"<boolean>\",\n      \"paidAt\": \"<string>\",\n      \"receivedAmount\": \"<number>\",\n      \"receivedBy\": \"<string,null>\",\n      \"useInCashCount\": \"<boolean>\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"cashRegister\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "492a4a70-52a1-42fa-8db8-5a9a7218f3f8",
+              "name": "The updated resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Payment\",\n    \"attributes\": {\n      \"amount\": \"<number>\",\n      \"canceled\": \"<boolean>\",\n      \"paidAt\": \"<string>\",\n      \"receivedAmount\": 950,\n      \"receivedBy\": \"2025-01-15T10:30:00Z\",\n      \"useInCashCount\": true\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      },\n      \"cashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Payment\",\n    \"attributes\": {\n      \"amount\": 150,\n      \"canceled\": false,\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"external_reference\": \"abcdef\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      },\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      },\n      \"expense\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Expense\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf3dd56b-7547-43df-b137-67c66f1b603f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Payment\",\n    \"attributes\": {\n      \"amount\": \"<number>\",\n      \"canceled\": \"<boolean>\",\n      \"paidAt\": \"<string>\",\n      \"receivedAmount\": 950,\n      \"receivedBy\": \"2025-01-15T10:30:00Z\",\n      \"useInCashCount\": true\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      },\n      \"cashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fu.do/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "85ee0949-bb74-4413-84e6-1c710a8f2d22",
+    "name": "Fudo Customers Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fudo Customers Ingredients API",
+    "version": "v1alpha1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ingredients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ingredients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fu.do/v1alpha1/ingredients",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number and size."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Object in the form of filter[column]=value."
+              }
+            ]
+          },
+          "docs": "Get ingredients"
+        },
+        {
+          "info": {
+            "name": "Get ingredient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fu.do/v1alpha1/ingredients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              }
+            ]
+          },
+          "docs": "Get ingredient"
+        },
+        {
+          "info": {
+            "name": "Update ingredient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.fu.do/v1alpha1/ingredients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update ingredient"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

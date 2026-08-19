@@ -1,0 +1,590 @@
+{
+  "item": [
+    {
+      "id": "ce658ec8-1753-42a9-a204-02617b0313b1",
+      "name": "Discounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a2b48ce2-f51e-4a6e-8c69-aa29c86a93fa",
+          "name": "Get discounts",
+          "request": {
+            "name": "Get discounts",
+            "description": {},
+            "url": {
+              "path": [
+                "discounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d991fa9d-fa44-4105-9b16-632862736e49",
+              "name": "A list of resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"Discount\",\n      \"attributes\": {\n        \"amount\": 100.5,\n        \"canceled\": false,\n        \"percentage\": 15,\n        \"maxAmount\": 100.5\n      },\n      \"relationships\": {\n        \"sale\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Sale\"\n          }\n        },\n        \"item\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Item\"\n          }\n        },\n        \"discountTemplate\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"DiscountTemplate\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"1\",\n      \"type\": \"Discount\",\n      \"attributes\": {\n        \"amount\": 100.5,\n        \"canceled\": false,\n        \"percentage\": 15,\n        \"maxAmount\": 100.5\n      },\n      \"relationships\": {\n        \"sale\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Sale\"\n          }\n        },\n        \"item\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Item\"\n          }\n        },\n        \"discountTemplate\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"DiscountTemplate\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f3e60d7-3de5-419e-9046-3e295fd27462",
+          "name": "Create discount",
+          "request": {
+            "name": "Create discount",
+            "description": {},
+            "url": {
+              "path": [
+                "discounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"amount\": \"<number>\"\n    },\n    \"relationships\": {\n      \"sale\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"discountTemplate\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "963b1512-5e05-4478-a93f-dd6bb3c74ad4",
+              "name": "The created resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"Discount\",\n    \"attributes\": {\n      \"amount\": 100.5\n    },\n    \"relationships\": {\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      },\n      \"discountTemplate\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"DiscountTemplate\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Discount\",\n    \"attributes\": {\n      \"amount\": 100.5,\n      \"canceled\": false,\n      \"percentage\": 15,\n      \"maxAmount\": 100.5\n    },\n    \"relationships\": {\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      },\n      \"item\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Item\"\n        }\n      },\n      \"discountTemplate\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"DiscountTemplate\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efa1c94e-a319-4b48-9295-b3f1ae28ce70",
+          "name": "Get discount",
+          "request": {
+            "name": "Get discount",
+            "description": {},
+            "url": {
+              "path": [
+                "discounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5f8b25a-c83f-4ce3-903b-a5509de666e2",
+              "name": "A single resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Discount\",\n    \"attributes\": {\n      \"amount\": 100.5,\n      \"canceled\": false,\n      \"percentage\": 15,\n      \"maxAmount\": 100.5\n    },\n    \"relationships\": {\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      },\n      \"item\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Item\"\n        }\n      },\n      \"discountTemplate\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"DiscountTemplate\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a5cee4b-aa2c-4d23-abe4-24089bc12ab9",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f336567d-6fa7-4bfe-9325-5a8088cbf2b1",
+          "name": "Update discount",
+          "request": {
+            "name": "Update discount",
+            "description": {},
+            "url": {
+              "path": [
+                "discounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"canceled\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e2f628eb-0e30-4f67-a361-32f609d27b20",
+              "name": "The updated resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Discount\",\n    \"attributes\": {\n      \"canceled\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Discount\",\n    \"attributes\": {\n      \"amount\": 100.5,\n      \"canceled\": false,\n      \"percentage\": 15,\n      \"maxAmount\": 100.5\n    },\n    \"relationships\": {\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      },\n      \"item\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Item\"\n        }\n      },\n      \"discountTemplate\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"DiscountTemplate\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c37914be-a41e-430b-8bf6-3d857e2be7ae",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Discount\",\n    \"attributes\": {\n      \"canceled\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fu.do/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fdea70b9-cbfd-46ce-8d78-4cf46d5dc7d1",
+    "name": "Fudo Customers Discounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

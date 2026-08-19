@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fudo Customers Discounts API",
+    "version": "v1alpha1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get discounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fu.do/v1alpha1/discounts",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number and size."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              }
+            ]
+          },
+          "docs": "Get discounts"
+        },
+        {
+          "info": {
+            "name": "Create discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fu.do/v1alpha1/discounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create discount"
+        },
+        {
+          "info": {
+            "name": "Get discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fu.do/v1alpha1/discounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list. See pattern for possible values."
+              }
+            ]
+          },
+          "docs": "Get discount"
+        },
+        {
+          "info": {
+            "name": "Update discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.fu.do/v1alpha1/discounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update discount"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

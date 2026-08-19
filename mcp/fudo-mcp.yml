@@ -231,3 +231,9 @@ tools:
 - name: update_users
   description: Update user
   source_operation: openapi/fudo-openapi-original.yml#PATCH /users/{id}
+deployment:
+  mode: none
+  verified: derived
+  tools: 74
+  checked: '2026-08-12'
+  source: catalog MCP census

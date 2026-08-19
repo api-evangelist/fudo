@@ -1,0 +1,590 @@
+{
+  "item": [
+    {
+      "id": "be6014cc-ac1e-4f03-88eb-a37698349a06",
+      "name": "Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1616101d-7246-4485-878f-027ec2c6fd2a",
+          "name": "Get users",
+          "request": {
+            "name": "Get users",
+            "description": {},
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b448ebce-9585-41fe-b9bb-06aeca7dbdcc",
+              "name": "A list of resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "role"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"User\",\n      \"attributes\": {\n        \"active\": true,\n        \"admin\": false,\n        \"email\": \"cosme@example.com\",\n        \"name\": \"Cosme\",\n        \"phone\": \"+5491150000000\",\n        \"authPinEnabled\": false,\n        \"promotionalCode\": \"F.E-RESTO.USER\"\n      },\n      \"relationships\": {\n        \"role\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Role\"\n          }\n        },\n        \"deliveryCashRegister\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"CashRegister\"\n          }\n        },\n        \"tablesCashRegister\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"CashRegister\"\n          }\n        },\n        \"takeAwayCashRegister\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"CashRegister\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"1\",\n      \"type\": \"User\",\n      \"attributes\": {\n        \"active\": true,\n        \"admin\": false,\n        \"email\": \"cosme@example.com\",\n        \"name\": \"Cosme\",\n        \"phone\": \"+5491150000000\",\n        \"authPinEnabled\": false,\n        \"promotionalCode\": \"F.E-RESTO.USER\"\n      },\n      \"relationships\": {\n        \"role\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Role\"\n          }\n        },\n        \"deliveryCashRegister\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"CashRegister\"\n          }\n        },\n        \"tablesCashRegister\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"CashRegister\"\n          }\n        },\n        \"takeAwayCashRegister\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"CashRegister\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ed87dcc-c7a6-4b27-87b7-cc3fdc861c3b",
+          "name": "Create user",
+          "request": {
+            "name": "Create user",
+            "description": {},
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"email\": \"<email>\",\n      \"name\": \"<string>\",\n      \"password\": \"<string>\",\n      \"shortLogin\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"admin\": \"<boolean>\",\n      \"phone\": \"<string,null>\",\n      \"authPin\": \"<string,null>\"\n    },\n    \"relationships\": {\n      \"role\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"deliveryCashRegister\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"takeAwayCashRegister\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"tablesCashRegister\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5853f3bb-9ef6-4101-9c2e-c30bec59ad67",
+              "name": "The created resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"email\": \"cosme@example.com\",\n      \"name\": \"Cosme\",\n      \"password\": \"eipi5aiM\",\n      \"shortLogin\": \"cosme\",\n      \"active\": true,\n      \"admin\": false,\n      \"phone\": \"+5491150000000\",\n      \"authPin\": \"1234\"\n    },\n    \"relationships\": {\n      \"role\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Role\"\n        }\n      },\n      \"deliveryCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"takeAwayCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"tablesCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"User\",\n    \"attributes\": {\n      \"active\": true,\n      \"admin\": false,\n      \"email\": \"cosme@example.com\",\n      \"name\": \"Cosme\",\n      \"phone\": \"+5491150000000\",\n      \"authPinEnabled\": false,\n      \"promotionalCode\": \"F.E-RESTO.USER\"\n    },\n    \"relationships\": {\n      \"role\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Role\"\n        }\n      },\n      \"deliveryCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"tablesCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"takeAwayCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0de66009-3285-4c59-8de1-83214d8b024d",
+          "name": "Get user",
+          "request": {
+            "name": "Get user",
+            "description": {},
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c61c5c3-414a-41f1-8783-6de5a43d624f",
+              "name": "A single resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "role"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"User\",\n    \"attributes\": {\n      \"active\": true,\n      \"admin\": false,\n      \"email\": \"cosme@example.com\",\n      \"name\": \"Cosme\",\n      \"phone\": \"+5491150000000\",\n      \"authPinEnabled\": false,\n      \"promotionalCode\": \"F.E-RESTO.USER\"\n    },\n    \"relationships\": {\n      \"role\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Role\"\n        }\n      },\n      \"deliveryCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"tablesCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"takeAwayCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5570671-14c7-43de-81e9-ff80a7c2f40f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "role"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7fc0a08-4517-49a8-8e0e-a947fe9844b1",
+          "name": "Update user",
+          "request": {
+            "name": "Update user",
+            "description": {},
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"active\": \"<boolean>\",\n      \"admin\": \"<boolean>\",\n      \"shortLogin\": \"<string>\",\n      \"email\": \"<email>\",\n      \"name\": \"<string>\",\n      \"password\": \"<string>\",\n      \"phone\": \"<string,null>\",\n      \"authPin\": \"<string,null>\"\n    },\n    \"relationships\": {\n      \"role\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"deliveryCashRegister\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"takeAwayCashRegister\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"tablesCashRegister\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "113cd142-481e-4acc-8957-6345216dd8a5",
+              "name": "The updated resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"User\",\n    \"attributes\": {\n      \"active\": true,\n      \"admin\": false,\n      \"shortLogin\": \"cosme\",\n      \"email\": \"cosme@example.com\",\n      \"name\": \"Cosme\",\n      \"password\": \"Phielee3\",\n      \"phone\": \"+5491150000000\",\n      \"authPin\": \"1234\"\n    },\n    \"relationships\": {\n      \"role\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Role\"\n        }\n      },\n      \"deliveryCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"takeAwayCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"tablesCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"User\",\n    \"attributes\": {\n      \"active\": true,\n      \"admin\": false,\n      \"email\": \"cosme@example.com\",\n      \"name\": \"Cosme\",\n      \"phone\": \"+5491150000000\",\n      \"authPinEnabled\": false,\n      \"promotionalCode\": \"F.E-RESTO.USER\"\n    },\n    \"relationships\": {\n      \"role\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Role\"\n        }\n      },\n      \"deliveryCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"tablesCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"takeAwayCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed5014a7-09ed-40d6-8697-cc2d784e1d2b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"User\",\n    \"attributes\": {\n      \"active\": true,\n      \"admin\": false,\n      \"shortLogin\": \"cosme\",\n      \"email\": \"cosme@example.com\",\n      \"name\": \"Cosme\",\n      \"password\": \"Phielee3\",\n      \"phone\": \"+5491150000000\",\n      \"authPin\": \"1234\"\n    },\n    \"relationships\": {\n      \"role\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Role\"\n        }\n      },\n      \"deliveryCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"takeAwayCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      },\n      \"tablesCashRegister\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"CashRegister\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fu.do/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0ff7532b-2fff-4c3d-8cda-649bd468c522",
+    "name": "Fudo Customers Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

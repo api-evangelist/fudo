@@ -1,0 +1,662 @@
+{
+  "item": [
+    {
+      "id": "1509c6d7-37fa-4cbf-bc94-3c29d20adaec",
+      "name": "Items",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4f05e59-146a-4b14-afd7-ce2723b8a597",
+          "name": "Get items",
+          "request": {
+            "name": "Get items",
+            "description": {},
+            "url": {
+              "path": [
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "item",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "subitem",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8572572d-a5b8-4973-a669-6e4bf1ea2eb3",
+              "name": "A list of resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "item",
+                      "value": "price,quantity"
+                    },
+                    {
+                      "key": "product",
+                      "value": "name"
+                    },
+                    {
+                      "key": "subitem",
+                      "value": "price"
+                    },
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "product"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"Item\",\n      \"attributes\": {\n        \"canceled\": false,\n        \"cancellationComment\": \"This is a comment\",\n        \"cancellationReason\": \"CANCELED-BY-GUEST\",\n        \"comment\": \"This is a comment\",\n        \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n        \"price\": 100,\n        \"quantity\": 3,\n        \"status\": \"IN-COURSE\",\n        \"paid\": false\n      },\n      \"relationships\": {\n        \"priceList\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"PriceList\"\n          }\n        },\n        \"product\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Product\"\n          }\n        },\n        \"subitems\": [\n          {\n            \"data\": {\n              \"id\": \"2\",\n              \"type\": \"Item\"\n            }\n          },\n          {\n            \"data\": {\n              \"id\": \"2\",\n              \"type\": \"Item\"\n            }\n          }\n        ],\n        \"sale\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Sale\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"1\",\n      \"type\": \"Item\",\n      \"attributes\": {\n        \"canceled\": false,\n        \"cancellationComment\": \"This is a comment\",\n        \"cancellationReason\": \"CANCELED-BY-GUEST\",\n        \"comment\": \"This is a comment\",\n        \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n        \"price\": 100,\n        \"quantity\": 3,\n        \"status\": \"IN-COURSE\",\n        \"paid\": false\n      },\n      \"relationships\": {\n        \"priceList\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"PriceList\"\n          }\n        },\n        \"product\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Product\"\n          }\n        },\n        \"subitems\": [\n          {\n            \"data\": {\n              \"id\": \"2\",\n              \"type\": \"Item\"\n            }\n          },\n          {\n            \"data\": {\n              \"id\": \"2\",\n              \"type\": \"Item\"\n            }\n          }\n        ],\n        \"sale\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Sale\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d12e2a7-2399-4cb9-87cc-798c8b5922ef",
+          "name": "Create item",
+          "request": {
+            "name": "Create item",
+            "description": {},
+            "url": {
+              "path": [
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"quantity\": \"<number>\",\n      \"comment\": \"<string>\",\n      \"price\": \"<number>\",\n      \"origin\": \"<string>\",\n      \"uuid\": \"<uuid4>\"\n    },\n    \"relationships\": {\n      \"product\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"sale\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"priceList\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a88cca9-bd25-4216-a2c2-28e962148710",
+              "name": "The created resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"Item\",\n    \"attributes\": {\n      \"quantity\": 3,\n      \"comment\": \"This is a comment\",\n      \"price\": 100,\n      \"origin\": \"MOBILE\",\n      \"uuid\": \"a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11\"\n    },\n    \"relationships\": {\n      \"product\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Product\"\n        }\n      },\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      },\n      \"priceList\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PriceList\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Item\",\n    \"attributes\": {\n      \"canceled\": false,\n      \"cancellationComment\": \"This is a comment\",\n      \"cancellationReason\": \"CANCELED-BY-GUEST\",\n      \"comment\": \"This is a comment\",\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"price\": 100,\n      \"quantity\": 3,\n      \"status\": \"IN-COURSE\",\n      \"paid\": false\n    },\n    \"relationships\": {\n      \"priceList\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PriceList\"\n        }\n      },\n      \"product\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Product\"\n        }\n      },\n      \"subitems\": [\n        {\n          \"data\": {\n            \"id\": \"2\",\n            \"type\": \"Item\"\n          }\n        },\n        {\n          \"data\": {\n            \"id\": \"2\",\n            \"type\": \"Item\"\n          }\n        }\n      ],\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63eb154c-d433-4014-b4dd-28beba851b15",
+          "name": "Get item",
+          "request": {
+            "name": "Get item",
+            "description": {},
+            "url": {
+              "path": [
+                "items",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "item",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "subitem",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cca8cb1a-b38e-4735-8377-db3d58d7d455",
+              "name": "A single resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "item",
+                      "value": "price,quantity"
+                    },
+                    {
+                      "key": "product",
+                      "value": "name"
+                    },
+                    {
+                      "key": "subitem",
+                      "value": "price"
+                    },
+                    {
+                      "key": "include",
+                      "value": "product"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Item\",\n    \"attributes\": {\n      \"canceled\": false,\n      \"cancellationComment\": \"This is a comment\",\n      \"cancellationReason\": \"CANCELED-BY-GUEST\",\n      \"comment\": \"This is a comment\",\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"price\": 100,\n      \"quantity\": 3,\n      \"status\": \"IN-COURSE\",\n      \"paid\": false\n    },\n    \"relationships\": {\n      \"priceList\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PriceList\"\n        }\n      },\n      \"product\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Product\"\n        }\n      },\n      \"subitems\": [\n        {\n          \"data\": {\n            \"id\": \"2\",\n            \"type\": \"Item\"\n          }\n        },\n        {\n          \"data\": {\n            \"id\": \"2\",\n            \"type\": \"Item\"\n          }\n        }\n      ],\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efa20a1e-d02f-492a-b671-0cf3a3c2ec49",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "item",
+                      "value": "price,quantity"
+                    },
+                    {
+                      "key": "product",
+                      "value": "name"
+                    },
+                    {
+                      "key": "subitem",
+                      "value": "price"
+                    },
+                    {
+                      "key": "include",
+                      "value": "product"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be1dbb6e-c130-4bd8-88c6-d61a501e83ea",
+          "name": "Update item",
+          "request": {
+            "name": "Update item",
+            "description": {},
+            "url": {
+              "path": [
+                "items",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"canceled\": true\n    },\n    \"relationships\": {\n      \"sale\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce5905b9-0632-438e-a742-29c42fb90ac3",
+              "name": "The updated resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Item\",\n    \"attributes\": {\n      \"canceled\": \"string\"\n    },\n    \"relationships\": {\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Item\",\n    \"attributes\": {\n      \"canceled\": false,\n      \"cancellationComment\": \"This is a comment\",\n      \"cancellationReason\": \"CANCELED-BY-GUEST\",\n      \"comment\": \"This is a comment\",\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"price\": 100,\n      \"quantity\": 3,\n      \"status\": \"IN-COURSE\",\n      \"paid\": false\n    },\n    \"relationships\": {\n      \"priceList\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PriceList\"\n        }\n      },\n      \"product\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Product\"\n        }\n      },\n      \"subitems\": [\n        {\n          \"data\": {\n            \"id\": \"2\",\n            \"type\": \"Item\"\n          }\n        },\n        {\n          \"data\": {\n            \"id\": \"2\",\n            \"type\": \"Item\"\n          }\n        }\n      ],\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3435d4f9-9b77-4b9b-9622-932e88b5670b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Item\",\n    \"attributes\": {\n      \"canceled\": \"string\"\n    },\n    \"relationships\": {\n      \"sale\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Sale\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fu.do/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ab93a7dc-f001-4473-b323-eae5d6116b13",
+    "name": "Fudo Customers Items API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

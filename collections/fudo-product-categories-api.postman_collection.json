@@ -1,0 +1,590 @@
+{
+  "item": [
+    {
+      "id": "c7f4887b-419a-4b45-9f35-88db93950ecd",
+      "name": "Product Categories",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "38317c02-807e-443c-bb5f-316b8a0c0315",
+          "name": "Get product categories",
+          "request": {
+            "name": "Get product categories",
+            "description": {},
+            "url": {
+              "path": [
+                "product-categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3d99dc4-284a-450a-a492-9aed9c6044b9",
+              "name": "A list of resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "products"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"ProductCategory\",\n      \"attributes\": {\n        \"enableOnlineMenu\": true,\n        \"enableQrMenu\": true,\n        \"iconName\": \"bebidas-aguas\",\n        \"name\": \"Drinks\",\n        \"preparationTime\": 2873.292214984694,\n        \"position\": 50,\n        \"expressTakeawaySettings\": {\n          \"active\": true,\n          \"order\": 50,\n          \"color\": \"#AABBCC\"\n        }\n      },\n      \"relationships\": {\n        \"kitchen\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Kitchen\"\n          }\n        },\n        \"parentCategory\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductCategory\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"1\",\n      \"type\": \"ProductCategory\",\n      \"attributes\": {\n        \"enableOnlineMenu\": true,\n        \"enableQrMenu\": true,\n        \"iconName\": \"bebidas-aguas\",\n        \"name\": \"Drinks\",\n        \"preparationTime\": 2572.397437091206,\n        \"position\": 50,\n        \"expressTakeawaySettings\": {\n          \"active\": true,\n          \"order\": 50,\n          \"color\": \"#AABBCC\"\n        }\n      },\n      \"relationships\": {\n        \"kitchen\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"Kitchen\"\n          }\n        },\n        \"parentCategory\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"ProductCategory\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44dee02a-ac67-48c3-888a-a0fe77cfd26d",
+          "name": "Create product category",
+          "request": {
+            "name": "Create product category",
+            "description": {},
+            "url": {
+              "path": [
+                "product-categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ea0cee9-5c4d-4055-92b8-c43c38534990",
+              "name": "The created resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"ProductCategory\",\n    \"attributes\": {\n      \"name\": \"Drinks\"\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Kitchen\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"ProductCategory\",\n    \"attributes\": {\n      \"enableOnlineMenu\": true,\n      \"enableQrMenu\": true,\n      \"iconName\": \"bebidas-aguas\",\n      \"name\": \"Drinks\",\n      \"preparationTime\": 2137.6782717275933,\n      \"position\": 50,\n      \"expressTakeawaySettings\": {\n        \"active\": true,\n        \"order\": 50,\n        \"color\": \"#AABBCC\"\n      }\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Kitchen\"\n        }\n      },\n      \"parentCategory\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ProductCategory\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d83d7892-8256-4e05-99b6-2265c22797d7",
+          "name": "Get product category",
+          "request": {
+            "name": "Get product category",
+            "description": {},
+            "url": {
+              "path": [
+                "product-categories",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3c186cc-6ae2-4e5c-a2cc-7cbd390eacfd",
+              "name": "A single resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "products"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"ProductCategory\",\n    \"attributes\": {\n      \"enableOnlineMenu\": true,\n      \"enableQrMenu\": true,\n      \"iconName\": \"bebidas-aguas\",\n      \"name\": \"Drinks\",\n      \"preparationTime\": 2137.6782717275933,\n      \"position\": 50,\n      \"expressTakeawaySettings\": {\n        \"active\": true,\n        \"order\": 50,\n        \"color\": \"#AABBCC\"\n      }\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Kitchen\"\n        }\n      },\n      \"parentCategory\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ProductCategory\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc592090-4728-47c5-8e84-4078ffd5414e",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "products"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db0da2f0-96ba-4b18-9f8e-f443c12b7907",
+          "name": "Update product category",
+          "request": {
+            "name": "Update product category",
+            "description": {},
+            "url": {
+              "path": [
+                "product-categories",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"enableOnlineMenu\": \"<boolean>\",\n      \"iconName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"expressTakeawaySettings\": {\n        \"active\": \"<boolean>\",\n        \"order\": \"<integer>\",\n        \"color\": \"<string>\"\n      }\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "726d8903-b94f-4b05-b469-4307d726e044",
+              "name": "The updated resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"ProductCategory\",\n    \"attributes\": {\n      \"enableOnlineMenu\": true,\n      \"iconName\": \"bebidas-aguas\",\n      \"name\": \"Drinks\",\n      \"expressTakeawaySettings\": {\n        \"active\": true,\n        \"order\": 50,\n        \"color\": \"#AABBCC\"\n      }\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Kitchen\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"ProductCategory\",\n    \"attributes\": {\n      \"enableOnlineMenu\": true,\n      \"enableQrMenu\": true,\n      \"iconName\": \"bebidas-aguas\",\n      \"name\": \"Drinks\",\n      \"preparationTime\": 2137.6782717275933,\n      \"position\": 50,\n      \"expressTakeawaySettings\": {\n        \"active\": true,\n        \"order\": 50,\n        \"color\": \"#AABBCC\"\n      }\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Kitchen\"\n        }\n      },\n      \"parentCategory\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"ProductCategory\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5caeb652-0335-4f16-ad1a-ae6659a957f9",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"ProductCategory\",\n    \"attributes\": {\n      \"enableOnlineMenu\": true,\n      \"iconName\": \"bebidas-aguas\",\n      \"name\": \"Drinks\",\n      \"expressTakeawaySettings\": {\n        \"active\": true,\n        \"order\": 50,\n        \"color\": \"#AABBCC\"\n      }\n    },\n    \"relationships\": {\n      \"kitchen\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"Kitchen\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fu.do/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "01afdf52-bb88-411a-8bc9-6ddfc7ffaaa1",
+    "name": "Fudo Customers Product Categories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

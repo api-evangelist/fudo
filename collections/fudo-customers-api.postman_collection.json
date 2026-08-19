@@ -1,0 +1,879 @@
+{
+  "item": [
+    {
+      "id": "e29c642f-abc7-494c-ab3c-31425467eb65",
+      "name": "Customers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c650bd7f-e647-4282-95f3-a3f882a982ae",
+          "name": "Get customers",
+          "request": {
+            "name": "Get customers",
+            "description": {},
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "firstSaleDate",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "houseAccountEnabled",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "lastSaleDate",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "origin",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "salesCount",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "@all",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<string>",
+                  "description": "Page number and size."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated list. See pattern for possible values."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78ec7ebf-f9db-4c3b-9339-5f14a0387ddd",
+              "name": "A list of resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "active",
+                      "value": "eq.true"
+                    },
+                    {
+                      "key": "firstSaleDate",
+                      "value": "and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)"
+                    },
+                    {
+                      "key": "houseAccountEnabled",
+                      "value": "eq.true"
+                    },
+                    {
+                      "key": "lastSaleDate",
+                      "value": "and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)"
+                    },
+                    {
+                      "key": "origin",
+                      "value": "eq.ONLINE-MENU"
+                    },
+                    {
+                      "key": "salesCount",
+                      "value": "and(gte.5,lte.20)"
+                    },
+                    {
+                      "key": "@all",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"Customer\",\n      \"attributes\": {\n        \"active\": true,\n        \"address\": \"[\\\"Calle falsa\\\", \\\"123\\\", \\\"\\\", \\\"Springfield\\\"]\",\n        \"birthDate\": \"1990-05-15\",\n        \"comment\": \"comment\",\n        \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n        \"discountPercentage\": 100.5,\n        \"email\": \"paula@example.com\",\n        \"fiscalAddress\": {\n          \"postalCode\": \"12345-678\",\n          \"addressType\": \"Commercial\",\n          \"state\": \"SP\",\n          \"municipality\": \"São Paulo\",\n          \"city\": \"São Paulo\",\n          \"neighborhood\": \"Centro\",\n          \"street\": \"Avenida Paulista\",\n          \"number\": \"1000\",\n          \"economicActivity\": \"Comercio al por menor\",\n          \"countryEntity\": \"11\",\n          \"countrySubentity\": \"11001\"\n        },\n        \"firstSaleDate\": \"2020-05-11T23:15:00.000Z\",\n        \"historicalSalesCount\": 25,\n        \"historicalTotalSpent\": 1250.75,\n        \"houseAccountBalance\": 100.5,\n        \"houseAccountEnabled\": true,\n        \"lastSaleDate\": \"2020-05-11T23:15:00.000Z\",\n        \"name\": \"Paula\",\n        \"origin\": \"ONLINE-MENU\",\n        \"phone\": \"+54 11 1234 1234\",\n        \"salesCount\": 12,\n        \"vatNumber\": \"30-3312341234-9\"\n      },\n      \"relationships\": {\n        \"paymentMethod\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"PaymentMethod\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"1\",\n      \"type\": \"Customer\",\n      \"attributes\": {\n        \"active\": true,\n        \"address\": \"[\\\"Calle falsa\\\", \\\"123\\\", \\\"\\\", \\\"Springfield\\\"]\",\n        \"birthDate\": \"1990-05-15\",\n        \"comment\": \"comment\",\n        \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n        \"discountPercentage\": 100.5,\n        \"email\": \"paula@example.com\",\n        \"fiscalAddress\": {\n          \"postalCode\": \"12345-678\",\n          \"addressType\": \"Commercial\",\n          \"state\": \"SP\",\n          \"municipality\": \"São Paulo\",\n          \"city\": \"São Paulo\",\n          \"neighborhood\": \"Centro\",\n          \"street\": \"Avenida Paulista\",\n          \"number\": \"1000\",\n          \"economicActivity\": \"Comercio al por menor\",\n          \"countryEntity\": \"11\",\n          \"countrySubentity\": \"11001\"\n        },\n        \"firstSaleDate\": \"2020-05-11T23:15:00.000Z\",\n        \"historicalSalesCount\": 25,\n        \"historicalTotalSpent\": 1250.75,\n        \"houseAccountBalance\": 100.5,\n        \"houseAccountEnabled\": true,\n        \"lastSaleDate\": \"2020-05-11T23:15:00.000Z\",\n        \"name\": \"Paula\",\n        \"origin\": \"ONLINE-MENU\",\n        \"phone\": \"+54 11 1234 1234\",\n        \"salesCount\": 12,\n        \"vatNumber\": \"30-3312341234-9\"\n      },\n      \"relationships\": {\n        \"paymentMethod\": {\n          \"data\": {\n            \"id\": \"1\",\n            \"type\": \"PaymentMethod\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70b5544e-9172-4b74-9682-dd46162338da",
+          "name": "Create customer",
+          "request": {
+            "name": "Create customer",
+            "description": {},
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"address\": \"<string>\",\n      \"birthDate\": \"<date>\",\n      \"comment\": \"<string>\",\n      \"discountPercentage\": \"<number>\",\n      \"houseAccountEnabled\": \"<boolean>\",\n      \"email\": \"<email>\",\n      \"origin\": \"<string>\",\n      \"fiscalAddress\": {\n        \"postalCode\": \"<string>\",\n        \"addressType\": \"<string>\",\n        \"state\": \"<string>\",\n        \"municipality\": \"<string>\",\n        \"city\": \"<string>\",\n        \"neighborhood\": \"<string>\",\n        \"street\": \"<string>\",\n        \"number\": \"<string>\",\n        \"economicActivity\": \"<string>\",\n        \"countryEntity\": \"<string>\",\n        \"countrySubentity\": \"<string>\"\n      },\n      \"phone\": \"<string>\",\n      \"vatNumber\": \"<string>\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e316a472-d61d-4deb-b804-a1c8ecef240f",
+              "name": "The created resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"Customer\",\n    \"attributes\": {\n      \"name\": \"Paula\",\n      \"active\": true,\n      \"address\": \"[\\\"Calle falsa\\\", \\\"123\\\", \\\"\\\", \\\"Springfield\\\"]\",\n      \"birthDate\": \"1990-05-15\",\n      \"comment\": \"Comentario\",\n      \"discountPercentage\": 100,\n      \"houseAccountEnabled\": true,\n      \"email\": \"paula@example.com\",\n      \"origin\": \"RESERVATION\",\n      \"fiscalAddress\": {\n        \"postalCode\": \"12345-678\",\n        \"addressType\": \"Commercial\",\n        \"state\": \"SP\",\n        \"municipality\": \"São Paulo\",\n        \"city\": \"São Paulo\",\n        \"neighborhood\": \"Centro\",\n        \"street\": \"Avenida Paulista\",\n        \"number\": \"1000\",\n        \"economicActivity\": \"Comercio al por menor\",\n        \"countryEntity\": \"11\",\n        \"countrySubentity\": \"11001\"\n      },\n      \"phone\": \"+54 11 1234 1234\",\n      \"vatNumber\": \"30-3312341234-9\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Customer\",\n    \"attributes\": {\n      \"active\": true,\n      \"address\": \"[\\\"Calle falsa\\\", \\\"123\\\", \\\"\\\", \\\"Springfield\\\"]\",\n      \"birthDate\": \"1990-05-15\",\n      \"comment\": \"comment\",\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"discountPercentage\": 100.5,\n      \"email\": \"paula@example.com\",\n      \"fiscalAddress\": {\n        \"postalCode\": \"12345-678\",\n        \"addressType\": \"Commercial\",\n        \"state\": \"SP\",\n        \"municipality\": \"São Paulo\",\n        \"city\": \"São Paulo\",\n        \"neighborhood\": \"Centro\",\n        \"street\": \"Avenida Paulista\",\n        \"number\": \"1000\",\n        \"economicActivity\": \"Comercio al por menor\",\n        \"countryEntity\": \"11\",\n        \"countrySubentity\": \"11001\"\n      },\n      \"firstSaleDate\": \"2020-05-11T23:15:00.000Z\",\n      \"historicalSalesCount\": 25,\n      \"historicalTotalSpent\": 1250.75,\n      \"houseAccountBalance\": 100.5,\n      \"houseAccountEnabled\": true,\n      \"lastSaleDate\": \"2020-05-11T23:15:00.000Z\",\n      \"name\": \"Paula\",\n      \"origin\": \"ONLINE-MENU\",\n      \"phone\": \"+54 11 1234 1234\",\n      \"salesCount\": 12,\n      \"vatNumber\": \"30-3312341234-9\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7acae2e-d491-42c6-80d0-65f9dc2a8145",
+          "name": "Get customer",
+          "request": {
+            "name": "Get customer",
+            "description": {},
+            "url": {
+              "path": [
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "firstSaleDate",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "houseAccountEnabled",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "lastSaleDate",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "origin",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "salesCount",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                },
+                {
+                  "disabled": false,
+                  "key": "@all",
+                  "value": "<string>",
+                  "description": "Object in the form of filter[column]=value."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "130bd556-52a2-459d-a62a-27bc00c13464",
+              "name": "A single resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "active",
+                      "value": "eq.true"
+                    },
+                    {
+                      "key": "firstSaleDate",
+                      "value": "and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)"
+                    },
+                    {
+                      "key": "houseAccountEnabled",
+                      "value": "eq.true"
+                    },
+                    {
+                      "key": "lastSaleDate",
+                      "value": "and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)"
+                    },
+                    {
+                      "key": "origin",
+                      "value": "eq.ONLINE-MENU"
+                    },
+                    {
+                      "key": "salesCount",
+                      "value": "and(gte.5,lte.20)"
+                    },
+                    {
+                      "key": "@all",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Customer\",\n    \"attributes\": {\n      \"active\": true,\n      \"address\": \"[\\\"Calle falsa\\\", \\\"123\\\", \\\"\\\", \\\"Springfield\\\"]\",\n      \"birthDate\": \"1990-05-15\",\n      \"comment\": \"comment\",\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"discountPercentage\": 100.5,\n      \"email\": \"paula@example.com\",\n      \"fiscalAddress\": {\n        \"postalCode\": \"12345-678\",\n        \"addressType\": \"Commercial\",\n        \"state\": \"SP\",\n        \"municipality\": \"São Paulo\",\n        \"city\": \"São Paulo\",\n        \"neighborhood\": \"Centro\",\n        \"street\": \"Avenida Paulista\",\n        \"number\": \"1000\",\n        \"economicActivity\": \"Comercio al por menor\",\n        \"countryEntity\": \"11\",\n        \"countrySubentity\": \"11001\"\n      },\n      \"firstSaleDate\": \"2020-05-11T23:15:00.000Z\",\n      \"historicalSalesCount\": 25,\n      \"historicalTotalSpent\": 1250.75,\n      \"houseAccountBalance\": 100.5,\n      \"houseAccountEnabled\": true,\n      \"lastSaleDate\": \"2020-05-11T23:15:00.000Z\",\n      \"name\": \"Paula\",\n      \"origin\": \"ONLINE-MENU\",\n      \"phone\": \"+54 11 1234 1234\",\n      \"salesCount\": 12,\n      \"vatNumber\": \"30-3312341234-9\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5aa552d0-9958-41af-8c4e-cb63cf49b391",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "active",
+                      "value": "eq.true"
+                    },
+                    {
+                      "key": "firstSaleDate",
+                      "value": "and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)"
+                    },
+                    {
+                      "key": "houseAccountEnabled",
+                      "value": "eq.true"
+                    },
+                    {
+                      "key": "lastSaleDate",
+                      "value": "and(gte.2020-05-11T23:15:00Z,lte.2020-05-11T23:15:00Z)"
+                    },
+                    {
+                      "key": "origin",
+                      "value": "eq.ONLINE-MENU"
+                    },
+                    {
+                      "key": "salesCount",
+                      "value": "and(gte.5,lte.20)"
+                    },
+                    {
+                      "key": "@all",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87c70255-57a0-436b-8925-fcc1b8aea395",
+          "name": "Update customer",
+          "request": {
+            "name": "Update customer",
+            "description": {},
+            "url": {
+              "path": [
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"active\": \"<boolean>\",\n      \"address\": \"<string>\",\n      \"birthDate\": \"<date>\",\n      \"comment\": \"<string>\",\n      \"discountPercentage\": \"<number>\",\n      \"houseAccountEnabled\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"fiscalAddress\": {\n        \"postalCode\": \"<string>\",\n        \"addressType\": \"<string>\",\n        \"state\": \"<string>\",\n        \"municipality\": \"<string>\",\n        \"city\": \"<string>\",\n        \"neighborhood\": \"<string>\",\n        \"street\": \"<string>\",\n        \"number\": \"<string>\",\n        \"economicActivity\": \"<string>\",\n        \"countryEntity\": \"<string>\",\n        \"countrySubentity\": \"<string>\"\n      },\n      \"phone\": \"<string>\",\n      \"vatNumber\": \"<string>\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d4e4033f-4bc2-469f-84d9-4222b10d034d",
+              "name": "The updated resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Customer\",\n    \"attributes\": {\n      \"active\": true,\n      \"address\": \"Address\",\n      \"birthDate\": \"1990-05-15\",\n      \"comment\": \"Comentario\",\n      \"discountPercentage\": 100,\n      \"houseAccountEnabled\": true,\n      \"name\": \"Paula\",\n      \"email\": \"paula@example.com\",\n      \"fiscalAddress\": {\n        \"postalCode\": \"12345-678\",\n        \"addressType\": \"Commercial\",\n        \"state\": \"SP\",\n        \"municipality\": \"São Paulo\",\n        \"city\": \"São Paulo\",\n        \"neighborhood\": \"Centro\",\n        \"street\": \"Avenida Paulista\",\n        \"number\": \"1000\",\n        \"economicActivity\": \"Comercio al por menor\",\n        \"countryEntity\": \"11\",\n        \"countrySubentity\": \"11001\"\n      },\n      \"phone\": \"+54 11 1234 1234\",\n      \"vatNumber\": \"30-3312341234-9\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Customer\",\n    \"attributes\": {\n      \"active\": true,\n      \"address\": \"[\\\"Calle falsa\\\", \\\"123\\\", \\\"\\\", \\\"Springfield\\\"]\",\n      \"birthDate\": \"1990-05-15\",\n      \"comment\": \"comment\",\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"discountPercentage\": 100.5,\n      \"email\": \"paula@example.com\",\n      \"fiscalAddress\": {\n        \"postalCode\": \"12345-678\",\n        \"addressType\": \"Commercial\",\n        \"state\": \"SP\",\n        \"municipality\": \"São Paulo\",\n        \"city\": \"São Paulo\",\n        \"neighborhood\": \"Centro\",\n        \"street\": \"Avenida Paulista\",\n        \"number\": \"1000\",\n        \"economicActivity\": \"Comercio al por menor\",\n        \"countryEntity\": \"11\",\n        \"countrySubentity\": \"11001\"\n      },\n      \"firstSaleDate\": \"2020-05-11T23:15:00.000Z\",\n      \"historicalSalesCount\": 25,\n      \"historicalTotalSpent\": 1250.75,\n      \"houseAccountBalance\": 100.5,\n      \"houseAccountEnabled\": true,\n      \"lastSaleDate\": \"2020-05-11T23:15:00.000Z\",\n      \"name\": \"Paula\",\n      \"origin\": \"ONLINE-MENU\",\n      \"phone\": \"+54 11 1234 1234\",\n      \"salesCount\": 12,\n      \"vatNumber\": \"30-3312341234-9\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4255b0a-8999-4f76-9ec5-c7a4effda78f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Customer\",\n    \"attributes\": {\n      \"active\": true,\n      \"address\": \"Address\",\n      \"birthDate\": \"1990-05-15\",\n      \"comment\": \"Comentario\",\n      \"discountPercentage\": 100,\n      \"houseAccountEnabled\": true,\n      \"name\": \"Paula\",\n      \"email\": \"paula@example.com\",\n      \"fiscalAddress\": {\n        \"postalCode\": \"12345-678\",\n        \"addressType\": \"Commercial\",\n        \"state\": \"SP\",\n        \"municipality\": \"São Paulo\",\n        \"city\": \"São Paulo\",\n        \"neighborhood\": \"Centro\",\n        \"street\": \"Avenida Paulista\",\n        \"number\": \"1000\",\n        \"economicActivity\": \"Comercio al por menor\",\n        \"countryEntity\": \"11\",\n        \"countrySubentity\": \"11001\"\n      },\n      \"phone\": \"+54 11 1234 1234\",\n      \"vatNumber\": \"30-3312341234-9\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48e9dcf0-18e7-42da-9d2a-e3aa504d698c",
+          "name": "Delete customer",
+          "request": {
+            "name": "Delete customer",
+            "description": {},
+            "url": {
+              "path": [
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "137a7c46-bbfe-4b0c-a537-cdfed65f0ede",
+              "name": "A customer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"type\": \"Customer\",\n    \"attributes\": {\n      \"active\": true,\n      \"address\": \"[\\\"Calle falsa\\\", \\\"123\\\", \\\"\\\", \\\"Springfield\\\"]\",\n      \"birthDate\": \"1990-05-15\",\n      \"comment\": \"comment\",\n      \"createdAt\": \"2020-05-11T23:15:00.000Z\",\n      \"discountPercentage\": 100.5,\n      \"email\": \"paula@example.com\",\n      \"fiscalAddress\": {\n        \"postalCode\": \"12345-678\",\n        \"addressType\": \"Commercial\",\n        \"state\": \"SP\",\n        \"municipality\": \"São Paulo\",\n        \"city\": \"São Paulo\",\n        \"neighborhood\": \"Centro\",\n        \"street\": \"Avenida Paulista\",\n        \"number\": \"1000\",\n        \"economicActivity\": \"Comercio al por menor\",\n        \"countryEntity\": \"11\",\n        \"countrySubentity\": \"11001\"\n      },\n      \"firstSaleDate\": \"2020-05-11T23:15:00.000Z\",\n      \"historicalSalesCount\": 25,\n      \"historicalTotalSpent\": 1250.75,\n      \"houseAccountBalance\": 100.5,\n      \"houseAccountEnabled\": true,\n      \"lastSaleDate\": \"2020-05-11T23:15:00.000Z\",\n      \"name\": \"Paula\",\n      \"origin\": \"ONLINE-MENU\",\n      \"phone\": \"+54 11 1234 1234\",\n      \"salesCount\": 12,\n      \"vatNumber\": \"30-3312341234-9\"\n    },\n    \"relationships\": {\n      \"paymentMethod\": {\n        \"data\": {\n          \"id\": \"1\",\n          \"type\": \"PaymentMethod\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd7f6862-23ce-457e-b052-897ea5ec69e7",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    },\n    {\n      \"status\": \"404\",\n      \"title\": \"Not Found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fu.do/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4515b388-6d75-4221-aca4-b398d2c52225",
+    "name": "Fudo Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\n\n## Introduction\nThis document describes how to make use of the Fudo API. In order to use\nthe API, you must first have created an account in Fudo.\n\nYou can access the openapi spec yaml file\n[here](https://api.fu.do/v1alpha1/openapi.yml).\n\n## Authentication\nAuthentication is through an access token, sending the token in each\nrequest within the `Authorization` header. In order to obtain the token,\nyou must first have the access credentials `apiKey` and `apiSecret`.\n\n### Access credentials\nIf you do not yet have an `apiKey` and `apiSecret`, write to soporte@fu.do\nindicating the name of the account in Fudo and the user of the account to\nwhich you want to give API access.\n\nWe recommend creating a user especially for API access , in order to keep\nregular system users separated from users used for API access. E.g.\napi@mirestaurante. Keep in mind that the actions that can be done through\nthe API will depend on the role assigned to the user associated to the\ntoken.\n\n### Obtaining the token\nTo obtain the token, a request must be sent to the authentication endpoint\nwith the access credentials. It is important to send the `Content-Type`\nheader as `application/json`.\n\nThe authentication endpoint is `https://auth.fu.do/api`.\n\nExample:\n\n```terminal\ncurl -X POST https://auth.fu.do/api \\\n     -d '{\"apiKey\":\"123456\",\"apiSecret\":\"654321\"}' \\\n     -H \"Accept: application/json\" \\\n     -H \"Content-Type: application/json\"\n```\n\nAs a response, the access token will be obtained.\n\n```json\n{\"token\":\"1234567890\", exp: \"1645387452\"}\n```\n\nThe returned token will be the one that must be sent later in each request\nmade to the API, within the `Authorization` header, prefixed with the\n`Bearer` value, for example, `Authorization: Bearer 1234567890`.\n\n### Token expiration\nThe token lasts for 24 hours, after this time it can no longer be used and\na new token must be obtained. The expiration date is included in the `exp`\nattribute in the json response as an integer number of seconds since the\nEpoch.\n\nThis makes possible to know in advance when the token will expire and to\nrenew it if it has already expired at the time of using it again, or the\nexpiration date is approaching.\n\n## Pagination\nMost of the endpoints for retrieving collections (customers, sales, etc.)\naccept two query params for indicating the number of items to return (page\nsize) and the current page number (offset).\n\n- `page[size]`\n- `page[number]`\n\nBy default, the page size is 250 and the default page number is 1.\n\nCurrently, there is no way to get the total number of items. The way to get\nall the items is to keep doing requests until the number of items received\nis lower than the page size. That indicates there are no more items to\nretrieve.\n\nThe max items allowed per page is 500. In order to minimize the number of\nrequest it is possible to send this max value in the `size` param instead\nof using the default.\n\nE.g:\n\n```\nhttps://api.fu.do/v1alpha1/sales?page[size]=500&page[number]=2\n```\n",
+      "type": "text/plain"
+    }
+  }
+}
