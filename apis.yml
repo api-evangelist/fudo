@@ -37,6 +37,16 @@ modified: '2026-07-19'
 tags:
 - Company
 - Restaurant
+- Point-of-Sale
+- Hospitality
+- Food and Beverage
+- Payments
+- Inventory
+- Latin America
+- Software-as-a-Service
+tags_raw:
+- Company
+- Restaurant
 - Point of Sale
 - Hospitality
 - Food and Beverage
@@ -116,6 +126,8 @@ apis:
   humanURL: https://dev.fu.do/api/
   baseURL: https://api.fu.do/v1alpha1
   tags:
+  - Item
+  tags_raw:
   - Items
   properties:
   - type: OpenAPI
@@ -188,6 +200,8 @@ apis:
   humanURL: https://dev.fu.do/api/
   baseURL: https://api.fu.do/v1alpha1
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -272,6 +286,8 @@ apis:
   humanURL: https://dev.fu.do/api/
   baseURL: https://api.fu.do/v1alpha1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
