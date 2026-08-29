@@ -307,6 +307,9 @@ apis:
   - type: APIReference
     url: https://dev.fu.do/api/
 common:
+- type: CapabilityMap
+  url: capabilities/fudo-capability-edges.yml
+  name: Fudo Business Capability Map
 - type: DomainSecurity
   url: security/fudo-domain-security.yml
 - type: Authentication

@@ -1,0 +1,24 @@
+slug: fudo
+provider: Fudo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Travel & Hospitality
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Discounts
+  spec_file: fudo-discounts-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.7
+  evidence: POST /discounts "Create discount"; PATCH /discounts/{id} "Update discount"
+  reason: Maintenance of discount definitions used at point of sale maps to discount and promotion management;
+    operations are generic CRUD so confidence is moderate.
