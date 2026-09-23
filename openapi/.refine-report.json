@@ -1,25 +1,7 @@
 {
   "provider": "fudo",
   "sources": [
-    "fudo-customers-api-openapi.yml",
-    "fudo-discounts-api-openapi.yml",
-    "fudo-expense-categories-api-openapi.yml",
-    "fudo-expenses-api-openapi.yml",
-    "fudo-ingredients-api-openapi.yml",
-    "fudo-items-api-openapi.yml",
-    "fudo-kitchens-api-openapi.yml",
-    "fudo-payment-methods-api-openapi.yml",
-    "fudo-payments-api-openapi.yml",
-    "fudo-product-categories-api-openapi.yml",
-    "fudo-product-modifiers-api-openapi.yml",
-    "fudo-products-api-openapi.yml",
-    "fudo-providers-api-openapi.yml",
-    "fudo-roles-api-openapi.yml",
-    "fudo-rooms-api-openapi.yml",
-    "fudo-sales-api-openapi.yml",
-    "fudo-subitems-api-openapi.yml",
-    "fudo-tables-api-openapi.yml",
-    "fudo-users-api-openapi.yml"
+    "_original/fudo-openapi-original.yml"
   ],
   "outputs": [
     "fudo-customers-api-openapi.yml",
@@ -45,6 +27,30 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "fudo-openapi-original.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "fudo-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-discounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-expense-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-expenses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-ingredients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-kitchens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-payment-methods-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-product-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-product-modifiers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-roles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-rooms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-sales-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-subitems-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fudo-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
