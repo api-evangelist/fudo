@@ -1,0 +1,12 @@
+{
+ "url": "https://api.fu.do/v1alpha1/openapi.yml",
+ "requested_url": "https://api.fu.do/v1alpha1/openapi.yml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 314827,
+ "sha256": "ce1a11733a7721d3b67fb8cfe6baceaa3567bf8ff718a9bbba6168c0c07a40aa",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
