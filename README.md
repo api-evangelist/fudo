@@ -64,6 +64,146 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Fudo is a company surfaced as a portfolio company of a16z and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Fudo is a cloud-based point-of-sale and restaurant management platform used by more than 25,000 restaurants, bars, and cafes across Latin America. The product covers on-premise and online sales, QR menus, kitchen display, inventory and purchasing, expenses, table and room management, staff roles, and delivery-app integrations (Uber Eats, Rappi, PedidosYa). Fudo publishes a general-purpose public REST API (OpenAPI 3.1, JSON:API style) that lets Pro-plan accounts read and write sales, payments, products, customers, expenses, ingredients, and system configuration for reporting, BI, ERP, and custom integrations. This profile was surfaced as an a16z portfolio company and enriched by the API Evangelist pipeline from Fudo's own developer surface.
 
-Backed by: a16z
+**Areas:** Company · Restaurant · Point-of-Sale · Hospitality · Food and Beverage · Payments · Inventory · Latin America · Software-as-a-Service
+
+## Fudo on APIs.io
+
+Everything profiled for Fudo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fudo/](https://apis.io/providers/fudo/)** — or go straight to one of the APIs or properties below.
+
+### APIs (19)
+
+- [Fudo Customers API](https://apis.io/apis/fudo/fudo-customers-api/) — The Customers API from Fudo — 2 operation(s) for customers.
+- [Fudo Discounts API](https://apis.io/apis/fudo/fudo-discounts-api/) — The Discounts API from Fudo — 2 operation(s) for discounts.
+- [Fudo Expense Categories API](https://apis.io/apis/fudo/fudo-expense-categories-api/) — The Expense Categories API from Fudo — 2 operation(s) for expense categories.
+- [Fudo Expenses API](https://apis.io/apis/fudo/fudo-expenses-api/) — The Expenses API from Fudo — 2 operation(s) for expenses.
+- [Fudo Ingredients API](https://apis.io/apis/fudo/fudo-ingredients-api/) — The Ingredients API from Fudo — 2 operation(s) for ingredients.
+- [Fudo Items API](https://apis.io/apis/fudo/fudo-items-api/) — The Items API from Fudo — 2 operation(s) for items.
+- [Fudo Kitchens API](https://apis.io/apis/fudo/fudo-kitchens-api/) — The Kitchens API from Fudo — 2 operation(s) for kitchens.
+- [Fudo Payment Methods API](https://apis.io/apis/fudo/fudo-payment-methods-api/) — The Payment Methods API from Fudo — 2 operation(s) for payment methods.
+- [Fudo Payments API](https://apis.io/apis/fudo/fudo-payments-api/) — The Payments API from Fudo — 2 operation(s) for payments.
+- [Fudo Product Categories API](https://apis.io/apis/fudo/fudo-product-categories-api/) — The Product Categories API from Fudo — 2 operation(s) for product categories.
+- [Fudo Product Modifiers API](https://apis.io/apis/fudo/fudo-product-modifiers-api/) — The Product Modifiers API from Fudo — 2 operation(s) for product modifiers.
+- [Fudo Products API](https://apis.io/apis/fudo/fudo-products-api/) — The Products API from Fudo — 2 operation(s) for products.
+- [Fudo Providers API](https://apis.io/apis/fudo/fudo-providers-api/) — The Providers API from Fudo — 2 operation(s) for providers.
+- [Fudo Roles API](https://apis.io/apis/fudo/fudo-roles-api/) — The Roles API from Fudo — 2 operation(s) for roles.
+- [Fudo Rooms API](https://apis.io/apis/fudo/fudo-rooms-api/) — The Rooms API from Fudo — 2 operation(s) for rooms.
+- [Fudo Sales API](https://apis.io/apis/fudo/fudo-sales-api/) — The Sales API from Fudo — 2 operation(s) for sales.
+- [Fudo Subitems API](https://apis.io/apis/fudo/fudo-subitems-api/) — The Subitems API from Fudo — 1 operation(s) for subitems.
+- [Fudo Tables API](https://apis.io/apis/fudo/fudo-tables-api/) — The Tables API from Fudo — 2 operation(s) for tables.
+- [Fudo Users API](https://apis.io/apis/fudo/fudo-users-api/) — The Users API from Fudo — 2 operation(s) for users.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [fudo](https://apis.io/servers/fudo/fudo/)
+
+#### Collections (19)
+
+Postman and Open Collection request collections.
+
+- [Fudo Customers API](https://apis.io/collections/fudo/open-fudo-customers-api/)
+- [Fudo Customers Discounts API](https://apis.io/collections/fudo/open-fudo-discounts-api/)
+- [Fudo Customers Expense Categories API](https://apis.io/collections/fudo/open-fudo-expense-categories-api/)
+- [Fudo Customers Expenses API](https://apis.io/collections/fudo/open-fudo-expenses-api/)
+- [Fudo Customers Ingredients API](https://apis.io/collections/fudo/open-fudo-ingredients-api/)
+- [Fudo Customers Items API](https://apis.io/collections/fudo/open-fudo-items-api/)
+- [Fudo Customers Kitchens API](https://apis.io/collections/fudo/open-fudo-kitchens-api/)
+- [Fudo Customers Payment Methods API](https://apis.io/collections/fudo/open-fudo-payment-methods-api/)
+- [Fudo Customers Payments API](https://apis.io/collections/fudo/open-fudo-payments-api/)
+- [Fudo Customers Product Categories API](https://apis.io/collections/fudo/open-fudo-product-categories-api/)
+- [Fudo Customers Product Modifiers API](https://apis.io/collections/fudo/open-fudo-product-modifiers-api/)
+- [Fudo Customers Products API](https://apis.io/collections/fudo/open-fudo-products-api/)
+- [Fudo Customers Providers API](https://apis.io/collections/fudo/open-fudo-providers-api/)
+- [Fudo Customers Roles API](https://apis.io/collections/fudo/open-fudo-roles-api/)
+- [Fudo Customers Rooms API](https://apis.io/collections/fudo/open-fudo-rooms-api/)
+- [Fudo Customers Sales API](https://apis.io/collections/fudo/open-fudo-sales-api/)
+- [Fudo Customers Subitems API](https://apis.io/collections/fudo/open-fudo-subitems-api/)
+- [Fudo Customers Tables API](https://apis.io/collections/fudo/open-fudo-tables-api/)
+- [Fudo Customers Users API](https://apis.io/collections/fudo/open-fudo-users-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Fudo Openapi Overlay](https://apis.io/overlays/fudo/fudo-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Fudo Authentication](https://apis.io/security/fudo/fudo-authentication/)
+- [Fudo Domain Security](https://apis.io/security/fudo/fudo-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://fu.do)
+- [Documentation](https://dev.fu.do/api/)
+- [API reference](https://dev.fu.do/api/)
+- [Pricing](https://fu.do/es/precios/)
+- [Sign up](https://fu.do/es/crear-cuenta/)
+- [Support](https://soporte.fu.do)
+- [Blog](https://blog.fu.do/)
+- [Terms of service](https://fu.do/condiciones-de-servicio/)
+- [Privacy policy](https://fu.do/es/politicas-de-privacidad/)
+
+## API Evangelist rating
+
+**Kin Score 38.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 50.1 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 45.2 |
+| Access clarity | 44.7 |
+
+**Agent readiness 21.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.3** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fudo/](https://apis.io/providers/fudo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fudo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fudo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
